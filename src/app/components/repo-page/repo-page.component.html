@@ -4,8 +4,8 @@
 </div>
 
 <div class="row" *ngIf="userRepos.length > 0; else emptyBlock">
-    <div class="col col-sm-3">
-        <div class="card text-center" *ngFor="let repo of userRepos">
+    <div class="col col-sm-3" *ngFor="let repo of userRepos">
+        <div class="card text-center">
             <div class="card-header">
                 {{repo.name}} <span *ngIf="repo.language != null">{{" - " + repo.language}}</span>
             </div>

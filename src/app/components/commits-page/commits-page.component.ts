@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { sharedStylesheetJitUrl } from '@angular/compiler';
-declare var $:any;
+import { ApiAuthService } from 'src/app/shared/api-auth.service';
+import * as $ from 'jquery/dist/jquery.min.js';
 
 @Component({
   selector: 'app-commits-page',
@@ -9,14 +9,14 @@ declare var $:any;
 })
 export class CommitsPageComponent implements OnInit {
 
-  constructor() { }
+  constructor(private auth: ApiAuthService) { }
 
   ngOnInit(): void {
   }
 
   ngAfterViewInit(){
     $(function(){
-      const rootEndpoint = "https://api.github.com/users/spaulsteinberg/CS361/commits";
+      const rootEndpoint = "https://api.github.com/repos/spaulsteinberg/CS361/commits";
       $("#uni").click(function(){
         $.ajax({
           url: rootEndpoint,
@@ -31,7 +31,7 @@ export class CommitsPageComponent implements OnInit {
           complete:function(){
             ackComplete();
           }
-        });
+        })
       });
       function ackComplete(){
         console.log("Call completed");

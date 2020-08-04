@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ICommit } from '../../models/ICommit';
 import { IndividualRepoStatsService } from '../../shared/individual-repo-stats.service';
+import { ApiAuthService } from 'src/app/shared/api-auth.service';
 
 
 @Component({
@@ -11,7 +12,7 @@ import { IndividualRepoStatsService } from '../../shared/individual-repo-stats.s
 })
 export class RepoLatestCommitsComponent implements OnInit {
 
-  constructor(private http: HttpClient, private commits: IndividualRepoStatsService) { }
+  constructor(private http: HttpClient, private commits: IndividualRepoStatsService, private auth: ApiAuthService) { }
 
   ngOnInit(): void {
   }
@@ -19,11 +20,11 @@ export class RepoLatestCommitsComponent implements OnInit {
   toRender:ICommit[] = [];
   repoImportedData = [];
   data;
-  isError:boolean = false;
+  isError:boolean = true;
   async getRepos(){
     try {
       this.toExport = [];
-      this.data = await this.http.get("https://api.github.com/users/spaulsteinberg/repos").toPromise();
+      this.data = await this.http.get("https://api.github.com/users/spaulsteinberg/repos", this.auth.getHeaders()).toPromise();
       const data = this.data;
       for (var i = 0; i < data.length; i++){
         this.toExport.push(data[i]["name"]);

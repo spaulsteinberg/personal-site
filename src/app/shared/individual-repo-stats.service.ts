@@ -15,7 +15,6 @@ export class IndividualRepoStatsService {
     for (var repo of repoList){
       let endpoint = "https://api.github.com/repos/spaulsteinberg/" + repo + "/commits";
       this.response = await this.http.get(endpoint, this.auth.getHeaders()).toPromise();
-      console.log(this.response);
       const response = this.response;
       commitObjList.push(response);
     }
