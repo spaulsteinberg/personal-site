@@ -1,0 +1,22 @@
+<div class="jumbotron" style="background-color:transparent; box-shadow: none;">
+    <img src="https://image.flaticon.com/icons/svg/25/25231.svg" alt="repo_pic.jpg" class="rounded mx-auto d-block" height="100px">
+    <h2 class="display-4 text-center">Repositories</h2>
+</div>
+
+<div class="row" *ngIf="userRepos.length > 0; else emptyBlock">
+    <div class="col col-sm-3">
+        <div class="card text-center" *ngFor="let repo of userRepos">
+            <div class="card-header">
+                {{repo.name}} <span *ngIf="repo.language != null">{{" - " + repo.language}}</span>
+            </div>
+            <div class="card-body">
+                {{repo.description}}
+            </div>
+            <div class="card-footer">
+                <a href="{{repo.html_url}}" target="_blank"><button class="btn btn-info">View In GitHub</button></a>
+            </div>
+        </div>
+    </div>
+</div>
+<ng-template #emptyBlock>No repos found!</ng-template>
+<div class="text-danger" *ngIf="errorOnRepo != ''">{{errorOnRepo}}</div>

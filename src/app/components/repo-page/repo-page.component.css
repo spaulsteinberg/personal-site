@@ -1,0 +1,10 @@
+.col {
+    padding-bottom: 10px;
+}
+.card-body {
+    height: 6em;
+    overflow: hidden;
+}
+.card-body:hover {
+    overflow: auto;
+}

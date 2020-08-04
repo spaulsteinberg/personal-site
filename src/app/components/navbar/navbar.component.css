@@ -1,0 +1,10 @@
+nav {
+    background-color: #869594;
+}
+.navbar-brand:hover {
+    text-decoration: none;
+    color: blue;
+}
+.active {
+    color: green !important;
+}
