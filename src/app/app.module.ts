@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { MatCardModule } from '@angular/material/card';
+import { MatTableModule } from '@angular/material/table' 
 import { FormBuilder } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -16,6 +17,7 @@ import { ProjectLinksBodyComponent } from './components/project-links-body/proje
 import { RepoLatestCommitsComponent } from './components/repo-latest-commits/repo-latest-commits.component';
 import { RepoPageComponent } from './components/repo-page/repo-page.component';
 import { WelcomeBarComponent } from './components/welcome-bar/welcome-bar.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { WelcomeBarComponent } from './components/welcome-bar/welcome-bar.compon
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatCardModule
+    MatCardModule,
+    MatTableModule,
+    MatPaginatorModule
   ],
   providers: [FormBuilder],
   bootstrap: [AppComponent]

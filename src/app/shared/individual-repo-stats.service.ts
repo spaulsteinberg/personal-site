@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ApiAuthService } from './api-auth.service';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,7 @@ import { ApiAuthService } from './api-auth.service';
 export class IndividualRepoStatsService {
 
   constructor(private http: HttpClient, private auth: ApiAuthService) { }
-
+  
   response;
   async getCommitActivity(repoList){
     let commitObjList = [];
