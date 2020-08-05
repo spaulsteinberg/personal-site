@@ -1,8 +1,28 @@
-table {
+table, .mat-paginator {
     width: 75%;
     color: white;
+    margin: 0 auto;
+    position: sticky;
 }
+
 .mat-paginator {
-    color: white;
-    width: 75%;
+    padding-top: 10px;
+}
+
+.header {
+    font-weight: bold;
+    font-size: 20px;
+    color: orangered;
+}
+#table-container {
+    padding-top: 5%;
+}
+.mat-row {
+    background-color: gray;
+}
+.mat-header-row {
+    background-color: lightblue;
+}
+.url-link {
+    color: orange;
 }

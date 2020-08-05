@@ -21,9 +21,32 @@ export class RepoLatestCommitsComponent implements OnInit {
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   //set interval to get it immediately, was getting messed up by async call
   ngOnInit(): void {
-    /*const source = interval(1000);
-    source.subscribe(val => this.dataSource = new MatTableDataSource<ICommit>(this.toRender));
-    this.dataSource.paginator = this.paginator;*/
+      let repos;
+      this._com.getGitHubRepos().subscribe(data => {
+        repos = data;
+        for (var repo of repos){
+          var indiv = repo["name"]
+          let endpoint = "https://api.github.com/repos/spaulsteinberg/" + indiv + "/commits";
+          this.http.get(endpoint, this.auth.getHeaders()).subscribe(
+            data => {
+              for (var i = 0; i < repos.length; i++){
+                console.log(data[i]);
+                if (data[i] && data[i]["author"]["login"] == "spaulsteinberg"){
+                  this.toRender.push({url: data[i]["html_url"], 
+                                  message: data[i]["commit"]["message"],
+                                  date: data[i]["commit"]["author"]["date"],
+                                  repoName: repos[i]["name"]
+                                  });
+                }
+                
+            }
+            this.dataSource= new MatTableDataSource<ICommit>(this.toRender);
+            this.dataSource.paginator = this.paginator;
+          }
+          );
+        }
+      },
+      error => console.log(error));
   }
   
   toExport = [];
@@ -79,36 +102,10 @@ export class RepoLatestCommitsComponent implements OnInit {
   disableMeOnClick(){
     this.disableOnClick = true;
   }
-  fetchCommits(){
-    let repos;
-    this._com.getGitHubRepos().subscribe(data => {
-      repos = data;
-      for (var repo of repos){
-        var indiv = repo["name"]
-        let endpoint = "https://api.github.com/repos/spaulsteinberg/" + indiv + "/commits";
-        this.http.get(endpoint, this.auth.getHeaders()).subscribe(
-          data => {
-            for (var i = 0; i < repos.length; i++){
-              console.log(data[i]);
-              if (data[i] && data[i]["author"]["login"] == "spaulsteinberg"){
-                this.toRender.push({url: data[i]["html_url"], 
-                                message: data[i]["commit"]["message"],
-                                date: data[i]["commit"]["author"]["date"],
-                                repoName: repos[i]["name"]
-                                });
-              }
-              
-          }
-          this.dataSource= new MatTableDataSource<ICommit>(this.toRender);
-          this.dataSource.paginator = this.paginator;
-        }
-        );
-      }
-    },
-    error => console.log(error));
-  }
+  
 
   ngAfterViewInit(){
+    this.dataSource.paginator = this.paginator;
   }
 
 }
