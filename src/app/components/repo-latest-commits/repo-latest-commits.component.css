@@ -4,11 +4,9 @@ table, .mat-paginator {
     margin: 0 auto;
     position: sticky;
 }
-
 .mat-paginator {
     padding-top: 10px;
 }
-
 .header {
     font-weight: bold;
     font-size: 20px;
