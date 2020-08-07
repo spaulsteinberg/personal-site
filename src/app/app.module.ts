@@ -18,6 +18,7 @@ import { RepoLatestCommitsComponent } from './components/repo-latest-commits/rep
 import { RepoPageComponent } from './components/repo-page/repo-page.component';
 import { WelcomeBarComponent } from './components/welcome-bar/welcome-bar.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { EmailRegisterComponent } from './components/email-register/email-register.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     ProjectLinksBodyComponent,
     RepoLatestCommitsComponent,
     RepoPageComponent,
-    WelcomeBarComponent
+    WelcomeBarComponent,
+    EmailRegisterComponent
   ],
   imports: [
     BrowserModule,

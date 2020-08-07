@@ -6,6 +6,7 @@ import { NavigateTabComponent } from './components/navigate-tab/navigate-tab.com
 import { ProjectLinksComponent } from './components/project-links/project-links.component';
 import { RepoPageComponent } from './components/repo-page/repo-page.component';
 import { CommitsPageComponent } from './components/commits-page/commits-page.component';
+import { EmailRegisterComponent } from './components/email-register/email-register.component';
 
 
 const routes: Routes = [
@@ -15,7 +16,8 @@ const routes: Routes = [
   { path: 'navigate', component: NavigateTabComponent},
   { path: 'links', component: ProjectLinksComponent},
   { path: 'links/repos', component: RepoPageComponent},
-  { path: 'links/commits', component: CommitsPageComponent}
+  { path: 'links/commits', component: CommitsPageComponent},
+  { path: 'links/register', component: EmailRegisterComponent}
 ];
 
 @NgModule({
