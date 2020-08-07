@@ -14,7 +14,7 @@ export class AboutComponent implements OnInit {
   }
 
   ngAfterViewInit(){
-    
+    console.log(screen.height);
   }
 
 }

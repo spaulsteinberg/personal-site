@@ -30,7 +30,6 @@ export class RepoLatestCommitsComponent implements OnInit {
           this.http.get(endpoint, this.auth.getHeaders()).subscribe(
             data => {
               for (var i = 0; i < repos.length; i++){
-                console.log(data[i]);
                 if (data[i] && data[i]["author"]["login"] == "spaulsteinberg"){
                   this.toRender.push({url: data[i]["html_url"], 
                                   message: data[i]["commit"]["message"],
@@ -105,7 +104,6 @@ export class RepoLatestCommitsComponent implements OnInit {
   
 
   ngAfterViewInit(){
-    this.dataSource.paginator = this.paginator;
   }
 
 }
