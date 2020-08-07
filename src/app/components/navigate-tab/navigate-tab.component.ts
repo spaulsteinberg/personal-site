@@ -11,5 +11,8 @@ export class NavigateTabComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  ngAfterViewInit(){
+    
+  }
 
 }
