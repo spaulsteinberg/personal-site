@@ -19,6 +19,8 @@ import { RepoPageComponent } from './components/repo-page/repo-page.component';
 import { WelcomeBarComponent } from './components/welcome-bar/welcome-bar.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { EmailRegisterComponent } from './components/email-register/email-register.component';
+import { HomeComponent } from './components/home/home.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { EmailRegisterComponent } from './components/email-register/email-regist
     RepoLatestCommitsComponent,
     RepoPageComponent,
     WelcomeBarComponent,
-    EmailRegisterComponent
+    EmailRegisterComponent,
+    HomeComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,

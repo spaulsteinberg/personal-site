@@ -10,7 +10,7 @@
                 {{repo.name}} <span *ngIf="repo.language != null">{{" - " + repo.language}}</span>
             </div>
             <div class="card-body">
-                {{repo.description}}
+                {{repo.description}} <span *ngIf="repo.description == null" class="text-danger">*No description provided</span>
             </div>
             <div class="card-footer">
                 <a href="{{repo.html_url}}" target="_blank"><button class="btn btn-info">View In GitHub</button></a>

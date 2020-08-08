@@ -7,6 +7,7 @@ import { ProjectLinksComponent } from './components/project-links/project-links.
 import { RepoPageComponent } from './components/repo-page/repo-page.component';
 import { CommitsPageComponent } from './components/commits-page/commits-page.component';
 import { EmailRegisterComponent } from './components/email-register/email-register.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 
 const routes: Routes = [
@@ -17,7 +18,8 @@ const routes: Routes = [
   { path: 'links', component: ProjectLinksComponent},
   { path: 'links/repos', component: RepoPageComponent},
   { path: 'links/commits', component: CommitsPageComponent},
-  { path: 'links/register', component: EmailRegisterComponent}
+  { path: 'links/register', component: EmailRegisterComponent},
+  { path: '**', component:PageNotFoundComponent}
 ];
 
 @NgModule({
