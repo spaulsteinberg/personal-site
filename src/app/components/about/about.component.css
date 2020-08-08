@@ -36,3 +36,8 @@ a.tip:hover span {
     font-size: 25px;
     font-weight: bold;
 }
+
+.card-header {
+    background-color: transparent;
+    border-bottom: 0;
+  }
