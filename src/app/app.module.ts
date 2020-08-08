@@ -21,6 +21,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { EmailRegisterComponent } from './components/email-register/email-register.component';
 import { HomeComponent } from './components/home/home.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { RepoDetailsPageComponent } from './components/repo-details-page/repo-details-page.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
     WelcomeBarComponent,
     EmailRegisterComponent,
     HomeComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    RepoDetailsPageComponent
   ],
   imports: [
     BrowserModule,

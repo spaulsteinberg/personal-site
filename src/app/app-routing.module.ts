@@ -8,6 +8,7 @@ import { RepoPageComponent } from './components/repo-page/repo-page.component';
 import { CommitsPageComponent } from './components/commits-page/commits-page.component';
 import { EmailRegisterComponent } from './components/email-register/email-register.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { RepoDetailsPageComponent } from './components/repo-details-page/repo-details-page.component';
 
 
 const routes: Routes = [
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'navigate', component: NavigateTabComponent},
   { path: 'links', component: ProjectLinksComponent},
   { path: 'links/repos', component: RepoPageComponent},
+  { path: 'links/repos/info/:repo', component: RepoDetailsPageComponent},
   { path: 'links/commits', component: CommitsPageComponent},
   { path: 'links/register', component: EmailRegisterComponent},
   { path: '**', component:PageNotFoundComponent}

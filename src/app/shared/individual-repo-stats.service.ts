@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { ApiAuthService } from './api-auth.service';
-import { Observable } from 'rxjs';
+import { throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { GITHUB_API } from '../Constants/Constants';
 
 @Injectable({
   providedIn: 'root'
@@ -20,5 +22,16 @@ export class IndividualRepoStatsService {
       commitObjList.push(response);
     }
     return commitObjList.slice();
+  }
+
+  getRepoStatistics(repoName){
+     console.log(GITHUB_API.REPO_ENDPOINT);
+
+     const url = GITHUB_API.REPO_ENDPOINT + "/" + repoName + "/stats/contributors";
+     return this.http.get(url, this.auth.getHeaders()).pipe(catchError(this.errorHandler));
+  }
+
+  errorHandler(error: HttpErrorResponse){
+    return throwError(error.message || "Some error occurred when gathering repository data.");
   }
 }

@@ -5,17 +5,19 @@
 
 <div class="row" *ngIf="userRepos.length > 0; else emptyBlock">
     <div class="col col-sm-3" *ngFor="let repo of userRepos">
-        <div class="card text-center">
-            <div class="card-header">
-                {{repo.name}} <span *ngIf="repo.language != null">{{" - " + repo.language}}</span>
+        <a (click)="viewRepoDetails(repo)">
+            <div class="card text-center">
+                <div class="card-header">
+                    {{repo.name}} <span *ngIf="repo.language != null">{{" - " + repo.language}}</span>
+                </div>
+                <div class="card-body">
+                    {{repo.description}} <span *ngIf="repo.description == null" class="text-danger">*No description provided</span>
+                </div>
+                <div class="card-footer">
+                    <a href="{{repo.html_url}}" target="_blank"><button class="btn btn-info">View In GitHub</button></a>
+                </div>
             </div>
-            <div class="card-body">
-                {{repo.description}} <span *ngIf="repo.description == null" class="text-danger">*No description provided</span>
-            </div>
-            <div class="card-footer">
-                <a href="{{repo.html_url}}" target="_blank"><button class="btn btn-info">View In GitHub</button></a>
-            </div>
-        </div>
+        </a>
     </div>
 </div>
 <ng-template #emptyBlock>No repos found!</ng-template>

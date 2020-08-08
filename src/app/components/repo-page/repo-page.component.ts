@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RepoServiceService } from '../../shared/repo-service.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -9,7 +10,7 @@ import { RepoServiceService } from '../../shared/repo-service.service';
 })
 export class RepoPageComponent implements OnInit {
 
-  constructor(private repos: RepoServiceService) { }
+  constructor(private repos: RepoServiceService, private router: Router) { }
 
   userRepos:any = [];
   repoLanguages:Set<string> = new Set<string>();
@@ -17,6 +18,10 @@ export class RepoPageComponent implements OnInit {
   ngOnInit(): void {
     this.repos.getGitHubRepos().subscribe(data => this.userRepos = data,
                                           error => this.errorOnRepo = error);
+  }
+
+  viewRepoDetails(repository){
+    this.router.navigate(['links/repos/info', repository.name])
   }
 
 }
