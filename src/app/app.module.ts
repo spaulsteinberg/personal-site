@@ -22,6 +22,8 @@ import { EmailRegisterComponent } from './components/email-register/email-regist
 import { HomeComponent } from './components/home/home.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { RepoDetailsPageComponent } from './components/repo-details-page/repo-details-page.component';
+import { ChartsModule } from 'ng2-charts';
+
 
 @NgModule({
   declarations: [
@@ -47,7 +49,8 @@ import { RepoDetailsPageComponent } from './components/repo-details-page/repo-de
     BrowserAnimationsModule,
     MatCardModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    ChartsModule
   ],
   providers: [FormBuilder],
   bootstrap: [AppComponent]

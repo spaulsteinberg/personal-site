@@ -15,6 +15,7 @@ export class ApiAuthService {
       'Authorization': "token " + this.API_TOKEN
     })
   };
+
   getHeaders(){
     return this.options;
   }

@@ -24,14 +24,31 @@ export class IndividualRepoStatsService {
     return commitObjList.slice();
   }
 
-  getRepoStatistics(repoName){
+  getRepoCommitStatistics(repoName){
      console.log(GITHUB_API.REPO_ENDPOINT);
 
      const url = GITHUB_API.REPO_ENDPOINT + "/" + repoName + "/stats/contributors";
-     return this.http.get(url, this.auth.getHeaders()).pipe(catchError(this.errorHandler));
+     return this.http.get(url, this.auth.getHeaders()).pipe(catchError(this.errorHandlerCommit));
+  }
+  getRepoLanguageStatistics(repoName){
+    const url = GITHUB_API.REPO_ENDPOINT + "/" + repoName + "/languages";
+    return this.http.get(url, this.auth.getHeaders()).pipe(catchError(this.errorHandlerLanguage));
   }
 
-  errorHandler(error: HttpErrorResponse){
-    return throwError(error.message || "Some error occurred when gathering repository data.");
+  getReadMe(repoName){
+    const url = GITHUB_API.REPO_ENDPOINT + "/" + repoName + "/readme";
+    return this.http.get(url, this.auth.getHeaders()).pipe(catchError(this.errorHandlerLanguage));
+  }
+
+  readMeErrorOrNotFound(error:HttpErrorResponse){
+    return throwError(error.message || "ReadMe not found in repo.");
+  }
+
+  errorHandlerCommit(error: HttpErrorResponse){
+    return throwError(error.message || "Some error occurred when gathering commit data.");
+  }
+
+  errorHandlerLanguage(error: HttpErrorResponse){
+    return throwError(error.message || "Some error occurred gathering language data");
   }
 }

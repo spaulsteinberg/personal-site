@@ -1,2 +1,42 @@
-<p class="text-danger">{{repositoryName}}</p>
-<p *ngIf="errorMessage != ''">{{errorMessage}}</p>
+
+<div class="text-danger" *ngIf="errorMessageCommit != '' || errorMessageLanguage != ''; else chartBlock">
+    <p *ngIf="errorMessageCommit != ''">{{errorMessageCommit}}</p>
+    <p *ngIf="errorMessageLanguage != ''">{{errorMessageLanguage}}</p>
+</div>
+
+<!--<div>
+    <p *ngIf="readMe != null; else nullBlock">{{readMe}}</p>
+    <ng-template #nullBlock>{{errorReadMe}}</ng-template>
+</div>-->
+
+<ng-template #chartBlock>
+    <div class="jumbotron" style="background-color:transparent; box-shadow: none;">
+        <h2 class="display-4 text-center">{{repositoryName}} Repository</h2>
+    </div>
+    <div class="row">
+        <div class="col col-lg-8 offset-lg-2">
+            <div style="display: block" *ngIf="doughnutChartData.length > 0 && doughnutChartLabels.length > 0">
+                <canvas baseChart
+                            [data]="doughnutChartData"
+                            [labels]="doughnutChartLabels"
+                            [chartType]="doughnutChartType">
+                </canvas>
+            </div>
+        </div>
+    </div>
+    <!--<div class="row">
+        <div class="col col-lg-8 offset-lg-2">
+            <div>
+                <div style="display: block">
+                  <canvas baseChart
+                          [datasets]="barChartData"
+                          [labels]="barChartLabels"
+                          [options]="barChartOptions"
+                          [legend]="barChartLegend"
+                          [chartType]="barChartType">
+                  </canvas>
+                </div>
+              </div>
+        </div>
+    </div>-->
+</ng-template>
