@@ -26,8 +26,8 @@ export class IndividualRepoStatsService {
 
   getRepoCommitStatistics(repoName){
      console.log(GITHUB_API.REPO_ENDPOINT);
-
-     const url = GITHUB_API.REPO_ENDPOINT + "/" + repoName + "/stats/contributors";
+    // add anon=1 to include merge commits, etc because by default not all commits are returned
+     const url = GITHUB_API.REPO_ENDPOINT + "/" + repoName + "/stats/contributors?anon=1";
      return this.http.get(url, this.auth.getHeaders()).pipe(catchError(this.errorHandlerCommit));
   }
   getRepoLanguageStatistics(repoName){

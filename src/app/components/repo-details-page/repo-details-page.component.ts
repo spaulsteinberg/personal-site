@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { IndividualRepoStatsService } from 'src/app/shared/individual-repo-stats.service';
 import { LanguageParseService } from 'src/app/shared/language-parse.service';
+import { NumberValueAccessor } from '@angular/forms';
 
 @Component({
   selector: 'app-repo-details-page',
@@ -21,6 +22,8 @@ export class RepoDetailsPageComponent implements OnInit {
   commitData;
   temp;
   readMe = null;
+  repoCommitTotal:number = 0;
+  weeks = []; additions = []; deletions = []; changes = [];
 
   
   doughnutChartLabels = [];
@@ -32,10 +35,24 @@ export class RepoDetailsPageComponent implements OnInit {
       this.repositoryName = params.get('repo');
     });
    // this.getLanguages();
-    console.log(this.languageListMaster);
     this._stats.getRepoCommitStatistics(this.repositoryName)
             .subscribe(data => {
-                console.log(data);
+              console.log("IN REPO");
+              for (const [key, value] of Object.entries(data)) {
+                for (const [k, v] of Object.entries(value)) {
+                  if(k == "total") this.repoCommitTotal = value[k];
+                  if(k == "weeks"){
+                    for (var week of value[k]){
+                      console.log(week["w"]);
+                      this.weeks.push(this.convertUNIXtoDate(week["w"]));
+                      this.additions.push(week["a"]);
+                      this.deletions.push(week["d"]);
+                      this.changes.push(week["c"]);
+                      console.log(this.weeks);
+                    }
+                  }
+                }
+              }
             },
             error => this.errorMessageCommit = error
             );
@@ -46,7 +63,6 @@ export class RepoDetailsPageComponent implements OnInit {
               for (const [key, value] of Object.entries(this.languageData)) {
                 this.doughnutChartLabels.push(key);
                 this.doughnutChartData.push(value);
-                console.log(`${key}: ${value}`);
               }
               
             },
@@ -59,6 +75,19 @@ export class RepoDetailsPageComponent implements OnInit {
             },
             error => this.errorReadMe = error);
   }*/
+}
+convertUNIXtoDate(UNIX_timestamp){
+  var date = new Date(UNIX_timestamp * 1000);
+  var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  var year = date.getFullYear();
+  var month = months[date.getMonth()];
+  var fullDate = date.getDate();
+  var hour = date.getHours();
+  var min = date.getMinutes();
+  var sec = date.getSeconds();
+  var time = fullDate + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec ;
+  console.log(time);
+  return time;
 }
 public barChartOptions = {
   scaleShowVerticalLines: false,
