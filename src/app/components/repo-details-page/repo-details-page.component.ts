@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { IndividualRepoStatsService } from 'src/app/shared/individual-repo-stats.service';
 import { LanguageParseService } from 'src/app/shared/language-parse.service';
-import { NumberValueAccessor } from '@angular/forms';
+import { ChartDataSets, ChartOptions } from 'chart.js';
+import { Color, BaseChartDirective, Label } from 'ng2-charts';
+import * as pluginAnnotations from 'chartjs-plugin-annotation';
 
 @Component({
   selector: 'app-repo-details-page',
@@ -10,7 +12,7 @@ import { NumberValueAccessor } from '@angular/forms';
   styleUrls: ['./repo-details-page.component.css']
 })
 export class RepoDetailsPageComponent implements OnInit {
-
+  @ViewChild(BaseChartDirective, { static: true }) chart: BaseChartDirective;
   constructor(private route: ActivatedRoute, private _stats : IndividualRepoStatsService, private _languages: LanguageParseService) { }
 
   repositoryName:string;
@@ -29,6 +31,13 @@ export class RepoDetailsPageComponent implements OnInit {
   doughnutChartLabels = [];
   doughnutChartData = [];
   doughnutChartType = 'doughnut';
+  doughnutChartOptions:any = {
+    legend : {
+        labels : {
+          fontColor : 'teal'  
+        }
+    }
+};
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params: ParamMap) => {
@@ -43,12 +52,10 @@ export class RepoDetailsPageComponent implements OnInit {
                   if(k == "total") this.repoCommitTotal = value[k];
                   if(k == "weeks"){
                     for (var week of value[k]){
-                      console.log(week["w"]);
                       this.weeks.push(this.convertUNIXtoDate(week["w"]));
                       this.additions.push(week["a"]);
                       this.deletions.push(week["d"]);
                       this.changes.push(week["c"]);
-                      console.log(this.weeks);
                     }
                   }
                 }
@@ -82,23 +89,91 @@ convertUNIXtoDate(UNIX_timestamp){
   var year = date.getFullYear();
   var month = months[date.getMonth()];
   var fullDate = date.getDate();
-  var hour = date.getHours();
-  var min = date.getMinutes();
-  var sec = date.getSeconds();
-  var time = fullDate + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec ;
-  console.log(time);
+  var time = fullDate + ' ' + month + ' ' + year;
   return time;
 }
-public barChartOptions = {
-  scaleShowVerticalLines: false,
-  responsive: true
-};
-public barChartLabels = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
-public barChartType = 'bar';
-public barChartLegend = true;
-public barChartData = [
-  {data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'},
-  {data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B'}
+/* Line Chart creation: Mainly borrowed from documentation */
+
+lineChartData: ChartDataSets[] = [
+  { data: this.additions, label: 'Additions' },
+  { data: this.deletions, label: 'Deletions' },
+  { data: this.changes, label: 'Changes', yAxisID: 'y-axis-1' }
 ];
+lineChartLabels: Label[] = this.weeks;
+lineChartOptions: (ChartOptions & { annotation: any }) = {
+  responsive: true,
+  legend : {
+    labels : {
+      fontColor : '#ffffff'  
+    }
+  },
+  scales: {
+    // We use this empty structure as a placeholder for dynamic theming.
+    xAxes: [{}],
+    yAxes: [
+      {
+        id: 'y-axis-0',
+        position: 'left',
+      },
+      {
+        id: 'y-axis-1',
+        position: 'right',
+        gridLines: {
+          color: 'rgba(255,0,0,0.3)',
+        },
+        ticks: {
+          fontColor: 'red',
+        }
+      }
+    ]
+  },
+  annotation: {
+    annotations: [
+      {
+        type: 'line',
+        mode: 'vertical',
+        scaleID: 'x-axis-0',
+        value: 'March',
+        borderColor: 'orange',
+        borderWidth: 2,
+        label: {
+          enabled: true,
+          fontColor: 'orange',
+          content: 'LineAnno'
+        }
+      },
+    ],
+  },
+};
+public lineChartColors: Color[] = [
+  { // grey
+    backgroundColor: 'rgba(148,159,177,0.2)',
+    borderColor: 'rgba(148,159,177,1)',
+    pointBackgroundColor: 'rgba(148,159,177,1)',
+    pointBorderColor: '#fff',
+    pointHoverBackgroundColor: '#fff',
+    pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+  },
+  { // dark grey
+    backgroundColor: 'rgba(77,83,96,0.2)',
+    borderColor: 'rgba(77,83,96,1)',
+    pointBackgroundColor: 'rgba(77,83,96,1)',
+    pointBorderColor: '#fff',
+    pointHoverBackgroundColor: '#fff',
+    pointHoverBorderColor: 'rgba(77,83,96,1)'
+  },
+  { // red
+    backgroundColor: 'rgba(255,0,0,0.3)',
+    borderColor: 'red',
+    pointBackgroundColor: 'rgba(148,159,177,1)',
+    pointBorderColor: '#fff',
+    pointHoverBackgroundColor: '#fff',
+    pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+  }
+];
+public lineChartLegend = true;
+public lineChartType = 'line';
+public lineChartPlugins = [pluginAnnotations];
+
 
 }
