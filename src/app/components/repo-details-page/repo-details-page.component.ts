@@ -26,6 +26,7 @@ export class RepoDetailsPageComponent implements OnInit {
   readMe = null;
   repoCommitTotal:number = 0;
   weeks = []; additions = []; deletions = []; changes = [];
+  mostRecentCommitWeek:any;
 
   
   doughnutChartLabels = [];
@@ -56,6 +57,11 @@ export class RepoDetailsPageComponent implements OnInit {
                       this.additions.push(week["a"]);
                       this.deletions.push(week["d"]);
                       this.changes.push(week["c"]);
+                    }
+                    for (var i = 0; i < this.additions.length; i++){
+                      if (this.additions[i] > 0 || this.deletions[i] > 0 || this.changes[i] > 0){
+                        this.mostRecentCommitWeek = this.weeks[i];
+                      }
                     }
                   }
                 }
@@ -92,6 +98,7 @@ convertUNIXtoDate(UNIX_timestamp){
   var time = fullDate + ' ' + month + ' ' + year;
   return time;
 }
+
 /* Line Chart creation: Mainly borrowed from documentation */
 
 lineChartData: ChartDataSets[] = [
