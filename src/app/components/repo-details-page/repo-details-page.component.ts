@@ -28,6 +28,9 @@ export class RepoDetailsPageComponent implements OnInit {
   weeks = []; additions = []; deletions = []; changes = [];
   mostRecentCommitWeek:any;
 
+
+  mySlideOptions={items: 1, dots: true, nav: true};
+  myCarouselOptions={items: 3, dots: true, nav: true};
   
   doughnutChartLabels = [];
   doughnutChartData = [];
@@ -116,20 +119,32 @@ lineChartOptions: (ChartOptions & { annotation: any }) = {
   },
   scales: {
     // We use this empty structure as a placeholder for dynamic theming.
-    xAxes: [{}],
+    xAxes: [
+      {
+        ticks: {
+          fontColor: 'white',
+        }
+      }
+    ],
     yAxes: [
       {
         id: 'y-axis-0',
         position: 'left',
+        gridLines: {
+          color: 'rgba(255,0,0,0.7)',
+        },
+        ticks: {
+          fontColor: 'white',
+        }
       },
       {
         id: 'y-axis-1',
         position: 'right',
         gridLines: {
-          color: 'rgba(255,0,0,0.3)',
+          color: 'rgba(255,0,0,0.7)',
         },
         ticks: {
-          fontColor: 'red',
+          fontColor: 'white',
         }
       }
     ]
@@ -141,7 +156,7 @@ lineChartOptions: (ChartOptions & { annotation: any }) = {
         mode: 'vertical',
         scaleID: 'x-axis-0',
         value: 'March',
-        borderColor: 'orange',
+        borderColor: 'white',
         borderWidth: 2,
         label: {
           enabled: true,
@@ -153,21 +168,21 @@ lineChartOptions: (ChartOptions & { annotation: any }) = {
   },
 };
 public lineChartColors: Color[] = [
-  { // grey
-    backgroundColor: 'rgba(148,159,177,0.2)',
-    borderColor: 'rgba(148,159,177,1)',
-    pointBackgroundColor: 'rgba(148,159,177,1)',
+  { // lightgreen
+    backgroundColor: 'rgba(144,238,144,0.2)',
+    borderColor: 'rgba(144,238,144,1)',
+    pointBackgroundColor: 'rgba(144,238,144,1)',
     pointBorderColor: '#fff',
     pointHoverBackgroundColor: '#fff',
-    pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+    pointHoverBorderColor: 'rgba(144,238,144,0.8)'
   },
-  { // dark grey
-    backgroundColor: 'rgba(77,83,96,0.2)',
-    borderColor: 'rgba(77,83,96,1)',
-    pointBackgroundColor: 'rgba(77,83,96,1)',
+  { // blue
+    backgroundColor: 'rgba(44,130,201,0.2)',
+    borderColor: 'rgba(44,130,201,1)',
+    pointBackgroundColor: 'rgba(44,130,201,1)',
     pointBorderColor: '#fff',
     pointHoverBackgroundColor: '#fff',
-    pointHoverBorderColor: 'rgba(77,83,96,1)'
+    pointHoverBorderColor: 'rgba(44,130,201,1)'
   },
   { // red
     backgroundColor: 'rgba(255,0,0,0.3)',
@@ -181,6 +196,7 @@ public lineChartColors: Color[] = [
 public lineChartLegend = true;
 public lineChartType = 'line';
 public lineChartPlugins = [pluginAnnotations];
+
 
 
 }

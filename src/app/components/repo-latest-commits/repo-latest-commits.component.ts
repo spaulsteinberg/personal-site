@@ -4,10 +4,11 @@ import { ICommit } from '../../models/ICommit';
 import { IndividualRepoStatsService } from '../../shared/individual-repo-stats.service';
 import { ApiAuthService } from 'src/app/shared/api-auth.service';
 import {MatPaginator} from '@angular/material/paginator';
-import {MatTableDataSource} from '@angular/material/table'
+import {MatTableDataSource} from '@angular/material/table';
 import { interval } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { RepoServiceService } from 'src/app/shared/repo-service.service';
+import * as $ from 'jquery/dist/jquery.min.js';
 
 @Component({
   selector: 'app-repo-latest-commits',
@@ -96,14 +97,10 @@ export class RepoLatestCommitsComponent implements OnInit {
       
     }
   }*/
-
-  disableOnClick = false;
-  disableMeOnClick(){
-    this.disableOnClick = true;
-  }
   
 
   ngAfterViewInit(){
+    
   }
 
 }

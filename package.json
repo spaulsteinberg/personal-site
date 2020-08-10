@@ -27,7 +27,11 @@
     "jquery": "^3.5.1",
     "mdbootstrap": "^4.19.1",
     "ng2-charts": "^2.3.3",
+    "ngx-owl-carousel": "^2.0.7",
+    "ngx-slick-carousel": "^0.5.1",
+    "owl.carousel": "^2.3.4",
     "rxjs": "~6.5.4",
+    "slick-carousel": "^1.8.1",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
   },

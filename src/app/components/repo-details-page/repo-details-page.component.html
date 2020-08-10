@@ -17,29 +17,36 @@
     </div>
     <div class="row">
         <div class="col col-lg-8 offset-lg-2">
-            <div style="display: block" *ngIf="doughnutChartData.length > 0 && doughnutChartLabels.length > 0">
-                <canvas baseChart
-                            [data]="doughnutChartData"
-                            [labels]="doughnutChartLabels"
-                            [chartType]="doughnutChartType"
-                            [options]="doughnutChartOptions">
-                </canvas>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col col-lg-8 offset-lg-2">
-            <div style="display: block;">
-                <canvas baseChart width="400" height="400"
-                            [datasets]="lineChartData"
-                            [labels]="lineChartLabels"
-                            [options]="lineChartOptions"
-                            [colors]="lineChartColors"
-                            [legend]="lineChartLegend"
-                            [chartType]="lineChartType"
-                            [plugins]="lineChartPlugins">
-                </canvas>
-            </div>
+            <owl-carousel [options]="mySlideOptions" [carouselClasses]="['owl-theme', 'sliding']">
+                <div class="item">
+                <div>
+                    <div style="display: block" *ngIf="doughnutChartData.length > 0 && doughnutChartLabels.length > 0">
+                        <canvas baseChart
+                                    [data]="doughnutChartData"
+                                    [labels]="doughnutChartLabels"
+                                    [chartType]="doughnutChartType"
+                                    [options]="doughnutChartOptions">
+                        </canvas>
+                    </div>
+                </div>
+                </div>
+                <div class="item">
+                    <div>
+                        <div style="display: block;">
+                            <canvas baseChart 
+                                        [datasets]="lineChartData"
+                                        [labels]="lineChartLabels"
+                                        [options]="lineChartOptions"
+                                        [colors]="lineChartColors"
+                                        [legend]="lineChartLegend"
+                                        [chartType]="lineChartType"
+                                        [plugins]="lineChartPlugins">
+                            </canvas>
+                        </div>
+                    </div>
+                    </div>
+            </owl-carousel>
         </div>
     </div>
 </ng-template>
+

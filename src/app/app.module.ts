@@ -23,6 +23,7 @@ import { HomeComponent } from './components/home/home.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { RepoDetailsPageComponent } from './components/repo-details-page/repo-details-page.component';
 import { ChartsModule } from 'ng2-charts';
+import { OwlModule } from 'ngx-owl-carousel';
 
 
 @NgModule({
@@ -50,7 +51,8 @@ import { ChartsModule } from 'ng2-charts';
     MatCardModule,
     MatTableModule,
     MatPaginatorModule,
-    ChartsModule
+    ChartsModule,
+    OwlModule
   ],
   providers: [FormBuilder],
   bootstrap: [AppComponent]
