@@ -17,7 +17,7 @@
     </div>
     <div class="row">
         <div class="col col-lg-8 offset-lg-2">
-            <owl-carousel [options]="mySlideOptions" [carouselClasses]="['owl-theme', 'sliding']">
+            <owl-carousel id="carousel-main" [options]="mySlideOptions" [carouselClasses]="['owl-theme', 'sliding']">
                 <div class="item">
                 <div>
                     <div style="display: block" *ngIf="doughnutChartData.length > 0 && doughnutChartLabels.length > 0">
@@ -32,7 +32,7 @@
                 </div>
                 <div class="item">
                     <div>
-                        <div style="display: block;">
+                        <div style="display: block;" width="100vw">
                             <canvas baseChart 
                                         [datasets]="lineChartData"
                                         [labels]="lineChartLabels"

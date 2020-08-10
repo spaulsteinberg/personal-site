@@ -28,8 +28,7 @@ export class RepoDetailsPageComponent implements OnInit {
   weeks = []; additions = []; deletions = []; changes = [];
   mostRecentCommitWeek:any;
 
-
-  mySlideOptions={items: 1, dots: true, nav: true};
+  mySlideOptions={items: 1, loop:true, dots: true, nav: true, margin:10, autoplay: true, autoplayTimeout:10000, autoplayHoverPause:true};
   myCarouselOptions={items: 3, dots: true, nav: true};
   
   doughnutChartLabels = [];
@@ -130,9 +129,6 @@ lineChartOptions: (ChartOptions & { annotation: any }) = {
       {
         id: 'y-axis-0',
         position: 'left',
-        gridLines: {
-          color: 'rgba(255,0,0,0.7)',
-        },
         ticks: {
           fontColor: 'white',
         }
@@ -196,6 +192,10 @@ public lineChartColors: Color[] = [
 public lineChartLegend = true;
 public lineChartType = 'line';
 public lineChartPlugins = [pluginAnnotations];
+
+ngAfterViewInit(){
+  
+}
 
 
 
