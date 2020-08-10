@@ -28,9 +28,18 @@ export class RepoDetailsPageComponent implements OnInit {
   weeks = []; additions = []; deletions = []; changes = [];
   mostRecentCommitWeek:any;
 
-  mySlideOptions={items: 1, loop:true, dots: true, nav: true, margin:10, autoplay: true, autoplayTimeout:10000, autoplayHoverPause:true};
+  mySlideOptions = {
+        items: 1, 
+        loop:true, 
+        dots: true, 
+        nav: true, 
+        margin:10, 
+        autoplay: true, 
+        autoplayTimeout:10000, 
+        autoplayHoverPause:true
+      };
   myCarouselOptions={items: 3, dots: true, nav: true};
-  
+
   doughnutChartLabels = [];
   doughnutChartData = [];
   doughnutChartType = 'doughnut';
