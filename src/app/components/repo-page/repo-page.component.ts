@@ -24,4 +24,10 @@ export class RepoPageComponent implements OnInit {
     this.router.navigate(['links/repos/info', repository.name])
   }
 
+  mySlideOptions = {
+    items: 1,
+    navigate: true
+  };
+  myCarouselOptions={items: 3, dots: true, nav: true};
+
 }

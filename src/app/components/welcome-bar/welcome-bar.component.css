@@ -4,3 +4,7 @@
     box-shadow: none;
     color: whitesmoke;
 }
+#name {
+    font-family: 'Courier New', Courier, monospace;
+    left: 5%;
+}

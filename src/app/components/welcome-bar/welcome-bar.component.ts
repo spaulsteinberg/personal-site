@@ -10,7 +10,7 @@ export class WelcomeBarComponent implements OnInit {
 
   constructor() { }
 
-  headingText:string[] = ["Use tabs to navigate", "Click the Home tab to go back", "Another Heading 1", "Another Heading 2"];
+  headingText:string[] = ["Use tabs to navigate", "Click the Home tab to go back", "View Project Links to see latest!", "Visit the About page for more info!"];
   headingCurrent = this.headingText[0];
   iterator:number = 0;
   showWelcome:boolean = true;
@@ -26,8 +26,13 @@ export class WelcomeBarComponent implements OnInit {
 
   rotateHeading(){
     this.hideWelcome();
-    const source = interval(9000);
+    const source = interval(6000);
     source.subscribe(val => this.headingCurrent = this.headingText[val%this.headingText.length]);
+  }
+
+  colors = ["blue", "orangered", "gray", "green", "purple"];
+  getStyle(ceiling){
+    return this.colors[Math.floor(Math.random() * Math.floor(ceiling))];
   }
 
 }

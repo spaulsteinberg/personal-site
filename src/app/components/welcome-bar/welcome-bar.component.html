@@ -1,5 +1,29 @@
 <div class="jumbotron">
-    <h1 *ngIf="showWelcome" class="display-3 text-center animated fadeOutDown delay-3s">Welcome!</h1>
-    <h1 *ngIf="!showWelcome" class="display-3 text-center animated fadeInUp delay-4s">{{headingCurrent}}</h1>
+    <!--<h1 *ngIf="showWelcome; else otherBlock" class="display-3 text-center animated fadeOutDown delay-3s">Welcome!</h1>
+    rotate colors just for fun. change this later :) 
+    <ng-template #otherBlock>
+        <h1 class="display-3 text-center animated fadeInUp delay-4s" [ngStyle]="{'color': getStyle(colors.length) }"><strong>{{headingCurrent}}</strong></h1>
+    </ng-template>-->
+</div>
+
+<div class="row text-white">
+    <div class="col col-sm-5" id="name">
+        <h1 class="display-2">Sam Steinberg</h1>
+        <hr style="background-color:white; margin-left:0; width:50%">
+        <p>Associate Software Engineer</p>
+        <p>Austin, TX</p>
+        <p>Charles Schwab, Inc.</p>
+        <p>University of Tennessee Class of 2020</p>
+        <p>DC <img src="../../assets/plane.gif" alt="plane-emoji.jpg" height="15px" width="15px"> 
+           CA <img src="../../assets/plane.gif" alt="plane-emoji.jpg" height="15px" width="15px">
+           DC <img src="../../assets/plane.gif" alt="plane-emoji.jpg" height="15px" width="15px">
+           TN <img src="../../assets/plane.gif" alt="plane-emoji.jpg" height="15px" width="15px">
+           FL <img src="../../assets/plane.gif" alt="plane-emoji.jpg" height="15px" width="15px">
+           TX 
+        </p>
+        <p>A collection of some of my work and interests. Public GitHub repos only, mainly from academia.
+            Feel free to get in touch with questions or to offer feedback on the site.
+        </p>
+    </div>
 </div>
 <app-home></app-home>

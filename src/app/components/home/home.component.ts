@@ -11,9 +11,15 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  mySlideImages = ["https://cdn.britannica.com/86/34386-050-25B31B35/Great-horned-owl.jpg","https://nas-national-prod.s3.amazonaws.com/styles/hero_cover_bird_page/s3/web_a1_3751_8_barn-owl_shlomo_neuman_kk-adult-male_copy.jpg?itok=oaskJaPd"];
-  myCarouselImages =["https://cdn.britannica.com/86/34386-050-25B31B35/Great-horned-owl.jpg","https://nas-national-prod.s3.amazonaws.com/styles/hero_cover_bird_page/s3/web_a1_3751_8_barn-owl_shlomo_neuman_kk-adult-male_copy.jpg?itok=oaskJaPd"];
-  mySlideOptions={items: 1, dots: true, nav: true};
+  mySlideOptions= { 
+      items: 1,
+      dots: true,
+      nav: true,
+      loop: true,
+      margin: 10, 
+      autoplay: true, 
+      autoplayTimeout:5000, 
+      autoplayHoverPause:true
+    };
   myCarouselOptions={items: 3, dots: true, nav: true};
-
 }

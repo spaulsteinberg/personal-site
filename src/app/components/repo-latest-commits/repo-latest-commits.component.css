@@ -24,3 +24,6 @@ table, .mat-paginator {
 .url-link {
     color: orange;
 }
+.mat-ripple, .mat-button-ripple.mat-ripple {
+    position: fixed;
+}

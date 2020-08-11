@@ -30,12 +30,15 @@ export class RepoLatestCommitsComponent implements OnInit {
           let endpoint = "https://api.github.com/repos/spaulsteinberg/" + indiv + "/commits";
           this.http.get(endpoint, this.auth.getHeaders()).subscribe(
             data => {
+              /*for(var d in data){
+
+              }*/
               for (var i = 0; i < repos.length; i++){
                 if (data[i] && data[i]["author"]["login"] == "spaulsteinberg"){
                   this.toRender.push({url: data[i]["html_url"], 
                                   message: data[i]["commit"]["message"],
                                   date: data[i]["commit"]["author"]["date"],
-                                  repoName: repos[i]["name"]
+                                  repoName: indiv
                                   });
                 }
                 
