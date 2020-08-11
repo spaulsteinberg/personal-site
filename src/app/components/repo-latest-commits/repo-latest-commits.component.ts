@@ -30,18 +30,18 @@ export class RepoLatestCommitsComponent implements OnInit {
           let endpoint = "https://api.github.com/repos/spaulsteinberg/" + indiv + "/commits";
           this.http.get(endpoint, this.auth.getHeaders()).subscribe(
             data => {
-              /*for(var d in data){
-
-              }*/
-              for (var i = 0; i < repos.length; i++){
-                if (data[i] && data[i]["author"]["login"] == "spaulsteinberg"){
-                  this.toRender.push({url: data[i]["html_url"], 
-                                  message: data[i]["commit"]["message"],
-                                  date: data[i]["commit"]["author"]["date"],
-                                  repoName: indiv
+              for(var d in data){
+                
+                if (data[d] && data[d]["author"]["login"] == "spaulsteinberg"){
+                  //extract repo name here -- not explicit in return call
+                  let url_extract = (data[d]["commit"]["tree"]["url"].match(/spaulsteinberg(.*?)git/g))[0];
+                  let rName = url_extract.substring(url_extract.indexOf('/') + 1, url_extract.lastIndexOf('/'));
+                  this.toRender.push({url: data[d]["html_url"], 
+                                  message: data[d]["commit"]["message"],
+                                  date: data[d]["commit"]["author"]["date"],
+                                  repoName: rName
                                   });
                 }
-                
             }
             this.dataSource= new MatTableDataSource<ICommit>(this.toRender);
             this.dataSource.paginator = this.paginator;
