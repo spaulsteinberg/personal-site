@@ -1,0 +1,27 @@
+<p>user-stats works!</p>
+<span class="text-danger" *ngIf="error != ''">Something went wrong in request: {{error}}</span>
+<div class="jumbotron" style="background-color:transparent; box-shadow: none;">
+  <img src="../../assets/user-stats-images/github-joke-logo.jpg" alt="github_logo.png" class="rounded-pill mx-auto d-block" height="100px">
+  <h2 class="display-4 text-center">GitHub Stats</h2>
+</div>
+<div class="row">
+    <div class="col col-lg-8 offset-lg-2">
+        <div>
+            <div>
+              <div class="for-spinner col col-md-1 offset-md-5">
+                <mat-spinner *ngIf="!resourcesLoaded"></mat-spinner>
+              </div>
+              <div style="display: block" *ngIf=" barChartLabels != undefined && barChartLabels.length > 0">
+                <canvas baseChart
+                  [datasets]="barChartData"
+                  [labels]="barChartLabels"
+                  [options]="barChartOptions"
+                  [legend]="barChartLegend"
+                  [chartType]="barChartType"
+                  [plugins] = "barChartPlugins">
+                </canvas>
+              </div>
+            </div>
+        </div>
+    </div>
+</div>

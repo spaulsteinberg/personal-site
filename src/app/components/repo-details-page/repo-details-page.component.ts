@@ -38,7 +38,7 @@ export class RepoDetailsPageComponent implements OnInit {
         autoplayTimeout:10000, 
         autoplayHoverPause:true
       };
-  myCarouselOptions={items: 3, dots: true, nav: true};
+  myCarouselOptions={items: 1, dots: true, nav: true};
 
   doughnutChartLabels = [];
   doughnutChartData = [];
@@ -203,7 +203,7 @@ public lineChartType = 'line';
 public lineChartPlugins = [pluginAnnotations];
 
 ngAfterViewInit(){
-  
+  console.log(this.lineChartData);
 }
 
 

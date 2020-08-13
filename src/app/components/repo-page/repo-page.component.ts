@@ -26,8 +26,10 @@ export class RepoPageComponent implements OnInit {
 
   mySlideOptions = {
     items: 1,
-    navigate: true
+    navigate: true,
+    dots: true
   };
   myCarouselOptions={items: 3, dots: true, nav: true};
+  verb = [1,2,3,4,5,6,7];
 
 }

@@ -1,14 +1,7 @@
-
 <div class="text-danger" *ngIf="errorMessageCommit != '' || errorMessageLanguage != ''; else chartBlock">
     <p *ngIf="errorMessageCommit != ''">{{errorMessageCommit}}</p>
     <p *ngIf="errorMessageLanguage != ''">{{errorMessageLanguage}}</p>
 </div>
-
-<!--<div>
-    <p *ngIf="readMe != null; else nullBlock">{{readMe}}</p>
-    <ng-template #nullBlock>{{errorReadMe}}</ng-template>
-</div>-->
-
 <ng-template #chartBlock>
     <div class="jumbotron" style="background-color:transparent; box-shadow: none;">
         <h2 class="display-4 text-center">{{repositoryName}} Repository</h2>
@@ -19,34 +12,29 @@
         <div class="col col-lg-8 offset-lg-2">
             <owl-carousel id="carousel-main" [options]="mySlideOptions" [carouselClasses]="['owl-theme', 'sliding']">
                 <div class="item">
-                    <div>
-                        <div style="display: block" *ngIf="doughnutChartData.length > 0 && doughnutChartLabels.length > 0">
-                            <canvas baseChart
-                                        [data]="doughnutChartData"
-                                        [labels]="doughnutChartLabels"
-                                        [chartType]="doughnutChartType"
-                                        [options]="doughnutChartOptions">
-                            </canvas>
-                        </div>
+                    <div style="display: block" *ngIf="doughnutChartData.length > 0 && doughnutChartLabels.length > 0">
+                        <canvas baseChart
+                                    [data]="doughnutChartData"
+                                    [labels]="doughnutChartLabels"
+                                    [chartType]="doughnutChartType"
+                                    [options]="doughnutChartOptions">
+                        </canvas>
                     </div>
                 </div>
                 <div class="item">
-                    <div>
-                        <div style="display: block;" width="100vw">
-                            <canvas baseChart 
-                                        [datasets]="lineChartData"
-                                        [labels]="lineChartLabels"
-                                        [options]="lineChartOptions"
-                                        [colors]="lineChartColors"
-                                        [legend]="lineChartLegend"
-                                        [chartType]="lineChartType"
-                                        [plugins]="lineChartPlugins">
-                            </canvas>
-                        </div>
+                    <div style="display: block;" width="100vw">
+                        <canvas baseChart 
+                                    [datasets]="lineChartData"
+                                    [labels]="lineChartLabels"
+                                    [options]="lineChartOptions"
+                                    [colors]="lineChartColors"
+                                    [legend]="lineChartLegend"
+                                    [chartType]="lineChartType"
+                                    [plugins]="lineChartPlugins">
+                        </canvas>
                     </div>
                 </div>
             </owl-carousel>
         </div>
     </div>
 </ng-template>
-

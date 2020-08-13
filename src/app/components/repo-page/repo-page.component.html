@@ -22,23 +22,3 @@
 </div>
 <ng-template #emptyBlock>No repos found!</ng-template>
 <div class="text-danger" *ngIf="errorOnRepo != ''">{{errorOnRepo}}</div>
-
-<!--<div class="row">
-        <owl-carousel id="carousel-main" [options]="mySlideOptions" [carouselClasses]="['owl-theme', 'sliding']">
-            <div class="col col-sm-3 item" *ngFor="let repo of userRepos">
-                <a (click)="viewRepoDetails(repo)">
-                    <div class="card text-center">
-                        <div class="card-header">
-                            {{repo.name}} <span *ngIf="repo.language != null">{{" - " + repo.language}}</span>
-                        </div>
-                        <div class="card-body">
-                            {{repo.description}} <span *ngIf="repo.description == null" class="text-danger">*No description provided</span>
-                        </div>
-                        <div class="card-footer">
-                            <a href="{{repo.html_url}}" target="_blank"><button class="btn btn-info">View In GitHub</button></a>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        </owl-carousel>
-</div>-->

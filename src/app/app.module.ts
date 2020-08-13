@@ -24,6 +24,10 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { RepoDetailsPageComponent } from './components/repo-details-page/repo-details-page.component';
 import { ChartsModule } from 'ng2-charts';
 import { OwlModule } from 'ngx-owl-carousel';
+import { ContactComponent } from './components/contact/contact.component';
+import { UserStatsComponent } from './components/user-stats/user-stats.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+
 
 
 @NgModule({
@@ -41,7 +45,9 @@ import { OwlModule } from 'ngx-owl-carousel';
     EmailRegisterComponent,
     HomeComponent,
     PageNotFoundComponent,
-    RepoDetailsPageComponent
+    RepoDetailsPageComponent,
+    ContactComponent,
+    UserStatsComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +58,8 @@ import { OwlModule } from 'ngx-owl-carousel';
     MatTableModule,
     MatPaginatorModule,
     ChartsModule,
-    OwlModule
+    OwlModule,
+    MatProgressSpinnerModule
   ],
   providers: [FormBuilder],
   bootstrap: [AppComponent]
