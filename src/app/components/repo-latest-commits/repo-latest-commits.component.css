@@ -2,15 +2,11 @@ table, .mat-paginator {
     width: 75%;
     color: white;
     margin: 0 auto;
-    position: sticky;
-}
-.mat-paginator {
-    padding-top: 10px;
 }
 .header {
-    font-weight: bold;
     font-size: 20px;
-    color: orangered;
+    color: violet;
+    width: 15% !important; /* this keep headers from moving */
 }
 #table-container {
     padding-top: 5%;
@@ -18,12 +14,16 @@ table, .mat-paginator {
 .mat-row {
     background-color: gray;
 }
-.mat-header-row {
-    background-color: lightblue;
+.mat-row:hover {
+    background-color: darkgray;
 }
 .url-link {
     color: orange;
 }
 .mat-ripple, .mat-button-ripple.mat-ripple {
     position: fixed;
+}
+.mat-elevation-z8 {
+    box-shadow: none;
+    border-color: transparent;
 }
