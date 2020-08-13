@@ -1,2 +1,20 @@
-<p>contact works!</p>
-<email-register></email-register>
+<div class="jumbotron"></div>
+
+<div class="row text-white">
+    <div class="col col-sm-5" id="contact-field">
+        <h1 class="display-2">Contact</h1>
+        <hr style="background-color:white; margin-left:0; width:35%">
+        <p>Personal Email: {{personalEmail}}</p>
+        <p>Work Email: {{workEmail}}</p>
+        <p>School Email: {{schoolEmail}}</p>
+        <p>Git Email : {{gitEmail}}</p>
+        <p>LinkedIn: <a href="https://www.linkedin.com/in/samuel-steinberg-3a028b156/" target="_blank">Samuel Steinberg</a></p>
+        <p>Click to register for updates: <img src="../../../assets/contact-images/email-png-7.jpg" alt="mail.jpg" height="30px" width="30px" (click)="showEmailRegister = true">
+        </p>
+    </div>
+    <div class="col col-sm-5 offset-lg-2" *ngIf="showEmailRegister">
+        <h1 class="display-2 text-white">Register</h1>
+        <hr style="background-color:white; margin-left:0; width:35%">
+        <email-register></email-register>
+    </div>
+</div>

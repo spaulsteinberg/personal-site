@@ -1,0 +1,12 @@
+#contact-field, h1 {
+    font-family: 'Courier New', Courier, monospace;
+    left: 5%;
+}
+.jumbotron {
+    background-color: transparent;
+    box-shadow: none;
+    border-color: transparent;
+}
+a {
+    color: orange;
+}
