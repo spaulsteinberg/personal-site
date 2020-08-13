@@ -8,6 +8,12 @@ table, .mat-paginator {
     color: violet;
     width: 15% !important; /* this keep headers from moving */
 }
+.header-url {
+    width: 10% !important;
+}
+.header-message {
+    width: 25% !important;
+}
 #table-container {
     padding-top: 5%;
 }

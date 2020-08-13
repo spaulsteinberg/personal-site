@@ -40,6 +40,15 @@ export class IndividualRepoStatsService {
     return this.http.get(url, this.auth.getHeaders()).pipe(catchError(this.errorHandlerLanguage));
   }
 
+  getLastYearOfCommitActivity(repoName){
+    const url = `${GITHUB_API.REPO_ENDPOINT}/${repoName}/stats/participation`;
+    return this.http.get(url, this.auth.getHeaders()).pipe(catchError(this.errorHandlerCommit));
+  }
+/*
+  getLastYearOfStatistics(){
+    /repos/{owner}/{repo}/stats/code_frequency
+  }*/
+
   readMeErrorOrNotFound(error:HttpErrorResponse){
     return throwError(error.message || "ReadMe not found in repo.");
   }

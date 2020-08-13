@@ -32,11 +32,13 @@ export class RepoDetailsPageComponent implements OnInit {
         items: 1, 
         loop:true, 
         dots: true, 
-        nav: true, 
+        nav: false, //also giving an empty slide
         margin:10, 
         autoplay: true, 
         autoplayTimeout:10000, 
-        autoplayHoverPause:true
+        autoplayHoverPause:true,
+        mouseDrag: false, //these options off because of empty slide issue...
+        touchDrag: false
       };
   myCarouselOptions={items: 1, dots: true, nav: true};
 

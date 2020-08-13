@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IndividualRepoStatsService } from 'src/app/shared/individual-repo-stats.service';
 import { RepoServiceService } from 'src/app/shared/repo-service.service';
-import { mergeMap, catchError } from 'rxjs/operators';
+import { mergeMap, tap, catchError } from 'rxjs/operators';
 import { IRepo } from '../../models/IRepo';
 import { of } from 'rxjs';
 import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
@@ -21,11 +21,17 @@ export class UserStatsComponent implements OnInit {
   resourcesLoaded:boolean = false;
   error:string = '';
   languageUsageStats = new Map();
+  r;
   ngOnInit(): void {
     this._repo.getGitHubRepos()
-    .pipe(
-      mergeMap(data => this.createLanguageMap(data)),
+    .pipe( //use pipe when you want to have multiple operators like merging and error catching
+      mergeMap(data => this.createLanguageMap(data)), //use mergeMap to use the data from the first subscription in the 2nd
       catchError(error => of(`Caught error: ${error}`))
+    ).subscribe();
+    this._repo.getGitHubRepos()
+    .pipe(
+      tap(data => this.getCommitsYearly(data)),
+      catchError(this._repo.errorHandler)
     ).subscribe();
     this.hydrateMap();
   }
@@ -49,6 +55,21 @@ export class UserStatsComponent implements OnInit {
           }
           //sort by value
           this.languageUsageStats = new Map([...this.languageUsageStats.entries()].sort((a, b) => b[1] - a[1]));
+      });
+    }
+  }
+
+  commitMap = new Map();
+  getCommitsYearly(repos){
+    for (var repo of repos){
+      let name = repo["name"];
+      let commitTotal = 0;
+      this._stats.getLastYearOfCommitActivity(repo["name"])
+      .subscribe(data => {
+        for (var i = 0; i < data["owner"].length; i++){
+          commitTotal += data["owner"][i];
+        }
+        this.commitMap.set(name, commitTotal);
       });
     }
   }
@@ -178,7 +199,6 @@ hydrateMap(){
       }];
     this.resourcesLoaded = true;
   }, 2000);
-  console.log(this.barChartData);
 }
 
 }
