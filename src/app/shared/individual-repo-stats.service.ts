@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { ApiAuthService } from './api-auth.service';
-import { throwError } from 'rxjs';
+import { throwError, Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { GITHUB_API } from '../Constants/Constants';
+import { IPageViews } from '../models/ITraffic'
 
 @Injectable({
   providedIn: 'root'
@@ -44,10 +45,11 @@ export class IndividualRepoStatsService {
     const url = `${GITHUB_API.REPO_ENDPOINT}/${repoName}/stats/participation`;
     return this.http.get(url, this.auth.getHeaders()).pipe(catchError(this.errorHandlerCommit));
   }
-/*
-  getLastYearOfStatistics(){
-    /repos/{owner}/{repo}/stats/code_frequency
-  }*/
+
+  getPageViews(repoName):Observable<IPageViews>{
+    const url = `${GITHUB_API.REPO_ENDPOINT}/${repoName}/traffic/views`;
+    return this.http.get<IPageViews>(url, this.auth.getHeaders()).pipe(catchError(this.errorHandlerPageViews));
+  }
 
   readMeErrorOrNotFound(error:HttpErrorResponse){
     return throwError(error.message || "ReadMe not found in repo.");
@@ -58,6 +60,10 @@ export class IndividualRepoStatsService {
   }
 
   errorHandlerLanguage(error: HttpErrorResponse){
-    return throwError(error.message || "Some error occurred gathering language data");
+    return throwError(error.message || "Some error occurred gathering language data.");
+  }
+
+  errorHandlerPageViews(error: HttpErrorResponse){
+    return throwError(error.message || "Something went wrong getting page views.");
   }
 }

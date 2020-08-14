@@ -39,16 +39,14 @@ export class UserStatsComponent implements OnInit {
   ngOnInit(): void {
     this._repo.getGitHubRepos()
     .pipe( //use pipe when you want to have multiple operators like merging and error catching
+        tap(data => this.getPageViewsForEachRepo(data)),
+      tap(data => this.getCommitsYearly(data)),
       mergeMap(data => this.createLanguageMap(data)), //use mergeMap to use the data from the first subscription in the 2nd
       catchError(error => of(`Caught error: ${error}`))
     ).subscribe();
-    this._repo.getGitHubRepos()
-    .pipe(
-      tap(data => this.getCommitsYearly(data),
-          error => of(`Caught error: ${error}`)),
-      catchError(this._repo.errorHandler)
-    ).subscribe();
+
     this.hydrateMap();
+    
   }
   
   async createLanguageMap(repos:IRepo[]){
@@ -72,6 +70,20 @@ export class UserStatsComponent implements OnInit {
           this.languageUsageStats = new Map([...this.languageUsageStats.entries()].sort((a, b) => b[1] - a[1]));
       });
     }
+  }
+
+  viewMap = new Map();
+  getPageViewsForEachRepo(repos){
+    for (var repo of repos){
+      let name = repo["name"];
+      console.log(name);
+      this._stats.getPageViews(name).subscribe(data => {
+        if (data.count > 0){
+          this.viewMap.set(name, {count: data.count, timestamps: data.views});
+        }
+    });
+    }
+    console.log(this.viewMap);
   }
 
   commitMap = new Map();
@@ -169,7 +181,8 @@ lineChartOptions: (ChartOptions & { annotation: any }) = {
   responsive: true,
   legend : {
     labels : {
-      fontColor : 'red'  
+      fontColor : 'whitesmoke',
+      fontSize: 14  
     }
   },
   scales: {
@@ -214,7 +227,7 @@ lineChartOptions: (ChartOptions & { annotation: any }) = {
         borderWidth: 2,
         label: {
           enabled: true,
-          fontColor: 'orange',
+          fontColor: 'white',
           content: 'LineAnno'
         }
       },
@@ -251,7 +264,7 @@ hydrateMap(){
     console.log(this.lineChartData, this.lineChartLabels);
     
     this.resourcesLoaded = true;
-  }, 1000);
+  }, 2000);
 }
 
 getWeeksAgo(){
