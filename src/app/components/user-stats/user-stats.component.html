@@ -1,7 +1,7 @@
 <span class="text-danger" *ngIf="error != ''">Something went wrong in request: {{error}}</span>
 <div class="jumbotron" style="background-color:transparent; box-shadow: none;">
   <img src="../../assets/user-stats-images/github-joke-logo.jpg" alt="github_logo.png" class="rounded-pill mx-auto d-block" height="100px">
-  <h2 class="display-4 text-center" style="padding-left:1%;">GitHub Stats</h2>
+  <h2 class="display-4 text-center" style="padding-right:1%;">GitHub Stats</h2>
 </div>
 <div class="row">
     <div class="col col-lg-8 offset-lg-2">
@@ -10,17 +10,31 @@
               <div class="for-spinner col col-sm-1 offset-md-5">
                 <mat-spinner *ngIf="!resourcesLoaded"></mat-spinner>
               </div>
-              <div style="display: block" *ngIf=" barChartLabels != undefined && barChartLabels.length > 0">
-                <canvas baseChart
-                  [datasets]="barChartData"
-                  [labels]="barChartLabels"
-                  [options]="barChartOptions"
-                  [legend]="barChartLegend"
-                  [chartType]="barChartType"
-                  [plugins] = "barChartPlugins">
-                </canvas>
-                <div class="text-center" style="padding-top:1%;"><p class="text-warning">*Chart language numbers are byte-representations</p></div>
-              </div>
+              <owl-carousel id="carousel-main" [options]="mySlideOptions" [carouselClasses]="['owl-theme', 'sliding']" *ngIf=" barChartLabels != undefined && barChartLabels.length > 0">
+                <div class="item">
+                  <div style="display: block">
+                    <canvas baseChart
+                          [datasets]="barChartData"
+                          [labels]="barChartLabels"
+                          [options]="barChartOptions"
+                          [legend]="barChartLegend"
+                          [chartType]="barChartType"
+                          [plugins] = "barChartPlugins">
+                    </canvas>
+                  </div>
+                </div>
+                <div class="item">
+                  <div style="display:block;" *ngIf="lineChartData?.length && lineChartData?.length > 0">
+                    <canvas baseChart 
+                        [datasets]="lineChartData"
+                        [labels]="lineChartLabels"
+                        [options]="lineChartOptions"
+                        [legend]="lineChartLegend"
+                        [chartType]="lineChartType">
+                    </canvas>
+                  </div>
+                </div>
+                </owl-carousel>
             </div>
         </div>
     </div>

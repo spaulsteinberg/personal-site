@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { IndividualRepoStatsService } from 'src/app/shared/individual-repo-stats.service';
 import { RepoServiceService } from 'src/app/shared/repo-service.service';
 import { mergeMap, tap, catchError } from 'rxjs/operators';
 import { IRepo } from '../../models/IRepo';
 import { of } from 'rxjs';
-import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
-import { Label } from 'ng2-charts';
+import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
+import { Color, BaseChartDirective, Label } from 'ng2-charts';
 import * as pluginDataLabels from 'chartjs-plugin-datalabels';
 
 
@@ -16,12 +16,26 @@ import * as pluginDataLabels from 'chartjs-plugin-datalabels';
 })
 export class UserStatsComponent implements OnInit {
 
+  @ViewChild(BaseChartDirective, { static: true }) chart: BaseChartDirective;
   constructor(private _stats : IndividualRepoStatsService, private _repo : RepoServiceService) { }
+
+  mySlideOptions = {
+    items: 1, 
+    loop:true, 
+    dots: true, 
+    nav: false, //also giving an empty slide
+    margin:10, 
+    autoplay: true, 
+    autoplayTimeout:6000, 
+    autoplayHoverPause:true,
+    mouseDrag: false, //these options off because of empty slide issue...
+    touchDrag: false
+  };
+  myCarouselOptions={items: 1, dots: true, nav: true};
 
   resourcesLoaded:boolean = false;
   error:string = '';
   languageUsageStats = new Map();
-  r;
   ngOnInit(): void {
     this._repo.getGitHubRepos()
     .pipe( //use pipe when you want to have multiple operators like merging and error catching
@@ -30,7 +44,8 @@ export class UserStatsComponent implements OnInit {
     ).subscribe();
     this._repo.getGitHubRepos()
     .pipe(
-      tap(data => this.getCommitsYearly(data)),
+      tap(data => this.getCommitsYearly(data),
+          error => of(`Caught error: ${error}`)),
       catchError(this._repo.errorHandler)
     ).subscribe();
     this.hydrateMap();
@@ -63,15 +78,17 @@ export class UserStatsComponent implements OnInit {
   getCommitsYearly(repos){
     for (var repo of repos){
       let name = repo["name"];
-      let commitTotal = 0;
       this._stats.getLastYearOfCommitActivity(repo["name"])
       .subscribe(data => {
         for (var i = 0; i < data["owner"].length; i++){
-          commitTotal += data["owner"][i];
+          if (data["owner"][i] > 0){
+            this.commitMap.set(name, data["owner"]);
+            break;
+          }
         }
-        this.commitMap.set(name, commitTotal);
       });
     }
+    console.log(this.commitMap);
   }
 
   public barChartOptions: ChartOptions = {
@@ -79,6 +96,12 @@ export class UserStatsComponent implements OnInit {
     scales: { xAxes: [{
       ticks: {
         fontColor: 'white',
+      },
+      scaleLabel: {
+        display: true,
+        labelString: 'Languages',
+        fontColor: 'whitesmoke',
+        fontSize: 18
       }
     }], yAxes: [
       {
@@ -89,8 +112,14 @@ export class UserStatsComponent implements OnInit {
         },
         ticks: {
           fontColor: 'white',
+        },
+        scaleLabel: {
+          display: true,
+          labelString: 'Number of Bytes',
+          fontColor: 'whitesmoke',
+          fontSize: 18
         }
-      }
+      },
     ]},
     plugins: {
       datalabels: {
@@ -132,6 +161,76 @@ generateRandomColors(){
   
 
 public barChartData: ChartDataSets[] = [];
+commitData = [];
+commitLabels = [];
+lineChartData: ChartDataSets[] = [];
+lineChartLabels: Label[] = [];
+lineChartOptions: (ChartOptions & { annotation: any }) = {
+  responsive: true,
+  legend : {
+    labels : {
+      fontColor : 'red'  
+    }
+  },
+  scales: {
+    // We use this empty structure as a placeholder for dynamic theming.
+    xAxes: [
+      {
+        ticks: {
+          fontColor: 'white',
+        },
+        scaleLabel: {
+          display: true,
+          labelString: 'Weeks From Present',
+          fontColor: 'whitesmoke',
+          fontSize: 18
+        }
+      }
+    ],
+    yAxes: [
+      {
+        id: 'y-axis-0',
+        position: 'left',
+        ticks: {
+          fontColor: 'white',
+        },
+        scaleLabel: {
+          display: true,
+          labelString: 'Number of Commits',
+          fontColor: 'whitesmoke',
+          fontSize: 18
+        }
+      }
+    ]
+  },
+  annotation: {
+    annotations: [
+      {
+        type: 'line',
+        mode: 'vertical',
+        scaleID: 'x-axis-0',
+        value: 'March',
+        borderColor: 'white',
+        borderWidth: 2,
+        label: {
+          enabled: true,
+          fontColor: 'orange',
+          content: 'LineAnno'
+        }
+      },
+    ],
+  },
+  title : {
+    text: "Weekly Commits Over One Year",
+    display: true,
+    fontColor: 'whitesmoke',
+    fontSize: 20
+  }
+};
+public lineChartColors: Color[] = [] 
+public lineChartLegend = true;
+public lineChartType = 'line';
+
 
 //wait for async call to finish...put a loading bar here
 hydrateMap(){
@@ -142,7 +241,27 @@ hydrateMap(){
       this.languageDataValues.push(value);
     }
     console.log(this.languageDataKeyLabels);
-    this.barChartLabels = this.languageDataKeyLabels;
+    this.assignChartLabelsForHydrate();
+      
+
+    for (const [key, value] of this.commitMap.entries()){
+      this.lineChartData.push({data: value, label: key});
+    }
+    this.lineChartLabels = this.getWeeksAgo();
+    console.log(this.lineChartData, this.lineChartLabels);
+    
+    this.resourcesLoaded = true;
+  }, 1000);
+}
+
+getWeeksAgo(){
+  let weeksAgo = [];
+  for (var i = 51; i >= 0; i--) weeksAgo[i] = 51 - i;
+  return weeksAgo;
+}
+
+assignChartLabelsForHydrate(){
+  this.barChartLabels = this.languageDataKeyLabels;
     this.barChartData = [{data: this.languageDataValues,
       backgroundColor:[  
         "rgba(255, 99, 132, 0.2)",
@@ -197,8 +316,7 @@ hydrateMap(){
         "rgba(255, 255, 255, 0.7)"
       ]
       }];
-    this.resourcesLoaded = true;
-  }, 2000);
 }
+ 
 
 }
