@@ -41,3 +41,9 @@ a.tip:hover span {
     background-color: transparent;
     border-bottom: 0;
   }
+  .bio {
+    font-family: 'Courier New', Courier, monospace;
+  }
+  .jumbotron {
+      height: 8%;
+  }

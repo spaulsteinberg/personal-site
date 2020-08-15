@@ -8,3 +8,6 @@
 .card-body:hover {
     overflow: auto;
 }
+.card {
+    width: 250%;
+}
