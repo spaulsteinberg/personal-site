@@ -22,9 +22,9 @@ export class UserStatsComponent implements OnInit {
 
   mySlideOptions = {
     items: 1, 
-    loop:true, 
-    dots: true, 
-    nav: false, //also giving an empty slide
+    loop:false, 
+    dots: false, 
+    nav: true, //also giving an empty slide
     margin:10, 
     autoplay: true, 
     autoplayTimeout:6000, 
@@ -74,11 +74,13 @@ export class UserStatsComponent implements OnInit {
   }
 
   viewMap = new Map();
+  totalViews:number = 0;
   getPageViewsForEachRepo(repos){
     for (var repo of repos){
       let name = repo["name"];
       this._stats.getPageViews(name).subscribe(data => {
         this.viewMap.set(name, data.views);
+        this.totalViews += data.count;
     });
     }
   }
