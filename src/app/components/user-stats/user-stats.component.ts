@@ -31,7 +31,7 @@ export class UserStatsComponent implements OnInit {
     mouseDrag: false, //these options off because of empty slide issue...
     touchDrag: false
   };
-  myCarouselOptions={items: 1, dots: true, nav: true};
+  myCarouselOptions={items: 3, dots: true, nav: true};
 
   resourcesLoaded:boolean = false;
   error:string = '';
@@ -39,13 +39,13 @@ export class UserStatsComponent implements OnInit {
   ngOnInit(): void {
     this._repo.getGitHubRepos()
     .pipe( //use pipe when you want to have multiple operators like merging and error catching
-        tap(data => this.getPageViewsForEachRepo(data)),
+      tap(data => this.getPageViewsForEachRepo(data)),
       tap(data => this.getCommitsYearly(data)),
       mergeMap(data => this.createLanguageMap(data)), //use mergeMap to use the data from the first subscription in the 2nd
       catchError(error => of(`Caught error: ${error}`))
     ).subscribe();
 
-    this.hydrateMap();
+    this.hydrateMaps();
     
   }
   
@@ -76,14 +76,12 @@ export class UserStatsComponent implements OnInit {
   getPageViewsForEachRepo(repos){
     for (var repo of repos){
       let name = repo["name"];
-      console.log(name);
       this._stats.getPageViews(name).subscribe(data => {
         if (data.count > 0){
-          this.viewMap.set(name, {count: data.count, timestamps: data.views});
+          this.viewMap.set(name, data.views);
         }
     });
     }
-    console.log(this.viewMap);
   }
 
   commitMap = new Map();
@@ -100,10 +98,9 @@ export class UserStatsComponent implements OnInit {
         }
       });
     }
-    console.log(this.commitMap);
   }
 
-  public barChartOptions: ChartOptions = {
+  public barChartLanguagesOptions: ChartOptions = {
     responsive: true,
     scales: { xAxes: [{
       ticks: {
@@ -147,9 +144,9 @@ export class UserStatsComponent implements OnInit {
       fontSize: 20
     }
   };
-  public barChartLabels: Label[];
-  public barChartType: ChartType = 'bar';
-  public barChartLegend = false;
+  public barChartLanguagesLabels: Label[];
+  public barChartLanguagesType: ChartType = 'bar';
+  public barChartLanguagesLegend = false;
   public barChartPlugins = [pluginDataLabels];
   languageDataKeyLabels = [];
   languageDataValues = [];
@@ -162,7 +159,7 @@ colorArray = [];
 //generate random hex nums
 generateRandomColors(){
   var result = '';
-  for (var i = 0; i < this.barChartLabels.length; i++){
+  for (var i = 0; i < this.barChartLanguagesLabels.length; i++){
     result = '';
     for (var j = 0; j < 5; j++){
       result += this.possibleColorsHex[Math.floor(Math.random() * this.possibleColorsHex.length)];
@@ -172,12 +169,13 @@ generateRandomColors(){
 }
   
 
-public barChartData: ChartDataSets[] = [];
+public barChartLanguagesData: ChartDataSets[] = [];
+
 commitData = [];
 commitLabels = [];
-lineChartData: ChartDataSets[] = [];
-lineChartLabels: Label[] = [];
-lineChartOptions: (ChartOptions & { annotation: any }) = {
+commitsLineChart: ChartDataSets[] = [];
+commitLineLabels: Label[] = [];
+commitLineOptions: (ChartOptions & { annotation: any }) = {
   responsive: true,
   legend : {
     labels : {
@@ -240,29 +238,107 @@ lineChartOptions: (ChartOptions & { annotation: any }) = {
     fontSize: 20
   }
 };
-public lineChartColors: Color[] = [] 
-public lineChartLegend = true;
+
+public commitLineLegend = true;
 public lineChartType = 'line';
+public scatterChartType = 'scatter';
+viewsScatterChart: ChartDataSets[] = [];
+viewsScatterLabels: Label[] = [];
+viewsScatterOptions: (ChartOptions & { annotation: any }) = {
+  responsive: true,
+  legend : {
+    labels : {
+      fontColor : 'whitesmoke',
+      fontSize: 14  
+    }
+  },
+  scales: {
+    // We use this empty structure as a placeholder for dynamic theming.
+    xAxes: [
+      {
+        ticks: {
+          fontColor: 'white',
+        },
+        scaleLabel: {
+          display: true,
+          labelString: 'X-axis',
+          fontColor: 'whitesmoke',
+          fontSize: 18
+        }
+      }
+    ],
+    yAxes: [
+      {
+        id: 'y-axis-0',
+        position: 'left',
+        ticks: {
+          fontColor: 'white',
+        },
+        scaleLabel: {
+          display: true,
+          labelString: 'Y-axis',
+          fontColor: 'whitesmoke',
+          fontSize: 18
+        }
+      }
+    ]
+  },
+  annotation: {
+    annotations: [
+      {
+        type: 'line',
+        mode: 'vertical',
+        scaleID: 'x-axis-0',
+        value: 'March',
+        borderColor: 'white',
+        borderWidth: 2,
+        label: {
+          enabled: true,
+          fontColor: 'white',
+          content: 'LineAnno'
+        }
+      },
+    ],
+  },
+  title : {
+    text: "title",
+    display: true,
+    fontColor: 'whitesmoke',
+    fontSize: 20
+  }
+};
 
 
 //wait for async call to finish...put a loading bar here
-hydrateMap(){
+hydrateMaps(){
   setTimeout(() => {
 
     for (const [key, value] of this.languageUsageStats.entries()){
       this.languageDataKeyLabels.push(key);
       this.languageDataValues.push(value);
     }
-    console.log(this.languageDataKeyLabels);
     this.assignChartLabelsForHydrate();
       
 
     for (const [key, value] of this.commitMap.entries()){
-      this.lineChartData.push({data: value, label: key});
+      this.commitsLineChart.push({data: value, label: key});
     }
-    this.lineChartLabels = this.getWeeksAgo();
-    console.log(this.lineChartData, this.lineChartLabels);
+    this.commitLineLabels = this.getWeeksAgo();
     
+    let scatterData = [];
+    for (const [key, value] of this.viewMap.entries()){
+      for (var val of value){
+        this.viewsScatterChart.push({
+          data: [{x: val.count, y: val.timestamp}],
+          label: key
+        }
+        );
+      }
+      this.viewsScatterLabels.push(key);
+      
+    }
+    console.log(this.commitsLineChart);
+    console.log(this.viewsScatterChart);
     this.resourcesLoaded = true;
   }, 2000);
 }
@@ -274,8 +350,8 @@ getWeeksAgo(){
 }
 
 assignChartLabelsForHydrate(){
-  this.barChartLabels = this.languageDataKeyLabels;
-    this.barChartData = [{data: this.languageDataValues,
+  this.barChartLanguagesLabels = this.languageDataKeyLabels;
+    this.barChartLanguagesData = [{data: this.languageDataValues,
       backgroundColor:[  
         "rgba(255, 99, 132, 0.2)",
         "rgba(255, 159, 64, 0.2)",

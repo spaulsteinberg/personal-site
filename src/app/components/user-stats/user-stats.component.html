@@ -10,27 +10,38 @@
               <div class="for-spinner col col-sm-1 offset-md-5">
                 <mat-spinner *ngIf="!resourcesLoaded"></mat-spinner>
               </div>
-              <owl-carousel id="carousel-main" [options]="mySlideOptions" [carouselClasses]="['owl-theme', 'sliding']" *ngIf=" barChartLabels != undefined && barChartLabels.length > 0">
+              <owl-carousel id="carousel-main" [options]="mySlideOptions" [carouselClasses]="['owl-theme', 'sliding']" *ngIf=" barChartLanguagesLabels != undefined && barChartLanguagesLabels.length > 0">
                 <div class="item">
                   <div style="display: block">
                     <canvas baseChart
-                          [datasets]="barChartData"
-                          [labels]="barChartLabels"
-                          [options]="barChartOptions"
-                          [legend]="barChartLegend"
-                          [chartType]="barChartType"
+                          [datasets]="barChartLanguagesData"
+                          [labels]="barChartLanguagesLabels"
+                          [options]="barChartLanguagesOptions"
+                          [legend]="barChartLanguagesLegend"
+                          [chartType]="barChartLanguagesType"
                           [plugins] = "barChartPlugins">
                     </canvas>
                   </div>
                 </div>
                 <div class="item">
-                  <div style="display:block;" *ngIf="lineChartData?.length && lineChartData?.length > 0">
+                  <div style="display:block;" *ngIf="commitsLineChart?.length && commitsLineChart?.length > 0">
                     <canvas baseChart 
-                        [datasets]="lineChartData"
-                        [labels]="lineChartLabels"
-                        [options]="lineChartOptions"
-                        [legend]="lineChartLegend"
+                        [datasets]="commitsLineChart"
+                        [labels]="commitLineLabels"
+                        [options]="commitLineOptions"
+                        [legend]="commitLineLegend"
                         [chartType]="lineChartType">
+                    </canvas>
+                  </div>
+                </div>
+                <div class="item">
+                  <div style="display:block;" *ngIf="viewsScatterChart?.length && viewsScatterChart?.length > 0">
+                    <canvas baseChart 
+                        [datasets]="viewsScatterChart"
+                        [labels]="viewsScatterLabels"
+                        [options]="viewsScatterOptions"
+                        [legend]="commitLineLegend"
+                        [chartType]="scatterChartType">
                     </canvas>
                   </div>
                 </div>
