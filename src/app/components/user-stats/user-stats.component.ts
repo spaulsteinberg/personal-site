@@ -7,6 +7,7 @@ import { of } from 'rxjs';
 import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
 import { Color, BaseChartDirective, Label } from 'ng2-charts';
 import * as pluginDataLabels from 'chartjs-plugin-datalabels';
+import * as _ from 'underscore';
 
 
 @Component({
@@ -77,9 +78,7 @@ export class UserStatsComponent implements OnInit {
     for (var repo of repos){
       let name = repo["name"];
       this._stats.getPageViews(name).subscribe(data => {
-        if (data.count > 0){
-          this.viewMap.set(name, data.views);
-        }
+        this.viewMap.set(name, data.views);
     });
     }
   }
@@ -192,7 +191,7 @@ commitLineOptions: (ChartOptions & { annotation: any }) = {
         },
         scaleLabel: {
           display: true,
-          labelString: 'Weeks From Present',
+          labelString: 'Weeks Ago From Present',
           fontColor: 'whitesmoke',
           fontSize: 18
         }
@@ -241,10 +240,9 @@ commitLineOptions: (ChartOptions & { annotation: any }) = {
 
 public commitLineLegend = true;
 public lineChartType = 'line';
-public scatterChartType = 'scatter';
-viewsScatterChart: ChartDataSets[] = [];
-viewsScatterLabels: Label[] = [];
-viewsScatterOptions: (ChartOptions & { annotation: any }) = {
+viewsLineChart: ChartDataSets[] = [];
+viewsLineLabels: Label[] = [];
+viewsLineOptions: (ChartOptions & { annotation: any }) = {
   responsive: true,
   legend : {
     labels : {
@@ -261,7 +259,7 @@ viewsScatterOptions: (ChartOptions & { annotation: any }) = {
         },
         scaleLabel: {
           display: true,
-          labelString: 'X-axis',
+          labelString: 'Date',
           fontColor: 'whitesmoke',
           fontSize: 18
         }
@@ -273,10 +271,11 @@ viewsScatterOptions: (ChartOptions & { annotation: any }) = {
         position: 'left',
         ticks: {
           fontColor: 'white',
+          beginAtZero: true
         },
         scaleLabel: {
           display: true,
-          labelString: 'Y-axis',
+          labelString: 'Views',
           fontColor: 'whitesmoke',
           fontSize: 18
         }
@@ -293,7 +292,7 @@ viewsScatterOptions: (ChartOptions & { annotation: any }) = {
         borderColor: 'white',
         borderWidth: 2,
         label: {
-          enabled: true,
+          enabled: false,
           fontColor: 'white',
           content: 'LineAnno'
         }
@@ -301,7 +300,7 @@ viewsScatterOptions: (ChartOptions & { annotation: any }) = {
     ],
   },
   title : {
-    text: "title",
+    text: "Visitors to GitHub Page",
     display: true,
     fontColor: 'whitesmoke',
     fontSize: 20
@@ -325,20 +324,20 @@ hydrateMaps(){
     }
     this.commitLineLabels = this.getWeeksAgo();
     
-    let scatterData = [];
+    let general = []; let uniques = []
     for (const [key, value] of this.viewMap.entries()){
       for (var val of value){
-        this.viewsScatterChart.push({
-          data: [{x: val.count, y: val.timestamp}],
-          label: key
-        }
-        );
+        general.push(val.count);
+        uniques.push(val.uniques)
+        this.viewsLineLabels.push(val["timestamp"]);
       }
-      this.viewsScatterLabels.push(key);
-      
     }
+    this.viewsLineChart = [
+      { data: general, label: "Total Visitors", hoverBackgroundColor: 'red'},
+      { data: uniques, label: "Unique Visitors", hoverBackgroundColor: 'blue'}
+    ]
     console.log(this.commitsLineChart);
-    console.log(this.viewsScatterChart);
+    console.log(this.viewsLineChart);
     this.resourcesLoaded = true;
   }, 2000);
 }
