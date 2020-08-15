@@ -27,6 +27,7 @@ import { OwlModule } from 'ngx-owl-carousel';
 import { ContactComponent } from './components/contact/contact.component';
 import { UserStatsComponent } from './components/user-stats/user-stats.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSortModule } from '@angular/material/sort';
 
 
 
@@ -59,7 +60,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatPaginatorModule,
     ChartsModule,
     OwlModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatSortModule
   ],
   providers: [FormBuilder],
   bootstrap: [AppComponent]

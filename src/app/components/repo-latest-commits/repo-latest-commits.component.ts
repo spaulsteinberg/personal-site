@@ -9,6 +9,7 @@ import { interval } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { RepoServiceService } from 'src/app/shared/repo-service.service';
 import * as $ from 'jquery/dist/jquery.min.js';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-repo-latest-commits',
@@ -20,6 +21,7 @@ export class RepoLatestCommitsComponent implements OnInit {
   constructor(private http: HttpClient, private commits: IndividualRepoStatsService, private _com: RepoServiceService, private auth: ApiAuthService) { }
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  @ViewChild(MatSort) sort:MatSort;
   //set interval to get it immediately, was getting messed up by async call
   ngOnInit(): void {
       let repos;
@@ -44,6 +46,7 @@ export class RepoLatestCommitsComponent implements OnInit {
             }
             this.dataSource = new MatTableDataSource<ICommit>(this.toRender);
             this.dataSource.paginator = this.paginator;
+            this.dataSource.sort = this.sort;
           }
           );
         }
@@ -56,6 +59,6 @@ export class RepoLatestCommitsComponent implements OnInit {
   repoImportedData = [];
   data;
   isError:boolean = true;
-  displayedColumns: string[] = ['repo', 'date', 'message', 'url'];
+  displayedColumns: string[] = ['repoName', 'date', 'message', 'url'];
   dataSource;
 }
