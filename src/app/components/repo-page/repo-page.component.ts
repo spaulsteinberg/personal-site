@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RepoServiceService } from '../../shared/repo-service.service';
 import { Router } from '@angular/router';
-
+import * as $ from 'jquery/dist/jquery.min.js';
 
 @Component({
   selector: 'app-repo-page',
@@ -30,5 +30,9 @@ export class RepoPageComponent implements OnInit {
     navigate: true,
     dots: true
   };
+
+  ngAfterViewInit(){
+    
+  }
 
 }

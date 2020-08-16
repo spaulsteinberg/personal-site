@@ -40,10 +40,11 @@ a.tip:hover span {
 .card-header {
     background-color: transparent;
     border-bottom: 0;
-  }
-  .bio {
+}
+.bio {
     font-family: 'Courier New', Courier, monospace;
-  }
-  .jumbotron {
-      height: 8%;
-  }
+}
+.title-tag-container {
+    padding: 2% 0 2% 0;
+    color: whitesmoke;
+}

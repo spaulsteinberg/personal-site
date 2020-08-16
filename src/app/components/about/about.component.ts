@@ -9,7 +9,7 @@ export class AboutComponent implements OnInit {
 
   constructor() { }
 
-  title:string = "Biography";
+  title:string = "Summary";
   ngOnInit(): void {
   }
 

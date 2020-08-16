@@ -2,24 +2,6 @@
     <img src="../../../assets/project-links-images/25231.svg" alt="repo_pic.jpg" class="rounded mx-auto d-block" height="100px">
     <h2 class="display-4 text-center">Repositories</h2>
 </div>
-
-<!--<div class="row" *ngIf="userRepos.length > 0; else emptyBlock">
-    <div class="col col-sm-3" *ngFor="let repo of userRepos">
-        <a (click)="viewRepoDetails(repo)">
-            <div class="card text-center">
-                <div class="card-header">
-                    {{repo.name}} <span *ngIf="repo.language != null">{{" - " + repo.language}}</span>
-                </div>
-                <div class="card-body">
-                    {{repo.description}} <span *ngIf="repo.description == null" class="text-danger">*No description provided</span>
-                </div>
-                <div class="card-footer">
-                    <a href="{{repo.html_url}}" target="_blank"><button class="btn btn-info">View In GitHub</button></a>
-                </div>
-            </div>
-        </a>
-    </div>
-</div> -->
 <div class="row" *ngIf="userRepos.length > 0; else emptyBlock">
     <div class="col col-lg-8 offset-lg-2">
         <owl-carousel id="carousel-main" [options]="mySlideOptions" [carouselClasses]="['owl-theme', 'sliding']">
