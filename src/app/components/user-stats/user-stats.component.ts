@@ -29,7 +29,8 @@ export class UserStatsComponent implements OnInit {
     autoplayTimeout:6000, 
     autoplayHoverPause:true,
     mouseDrag: false, //these options off because of empty slide issue...
-    touchDrag: false
+    touchDrag: false,
+    hover: true
   };
   myCarouselOptions={items: 3, dots: true, nav: true};
 
