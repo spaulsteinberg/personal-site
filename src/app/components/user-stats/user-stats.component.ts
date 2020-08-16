@@ -5,9 +5,8 @@ import { mergeMap, tap, catchError } from 'rxjs/operators';
 import { IRepo } from '../../models/IRepo';
 import { of } from 'rxjs';
 import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
-import { Color, BaseChartDirective, Label } from 'ng2-charts';
+import { BaseChartDirective, Label } from 'ng2-charts';
 import * as pluginDataLabels from 'chartjs-plugin-datalabels';
-import * as _ from 'underscore';
 
 
 @Component({
@@ -75,12 +74,23 @@ export class UserStatsComponent implements OnInit {
 
   viewMap = new Map();
   totalViews:number = 0;
+  sortedViewMap;
   getPageViewsForEachRepo(repos){
     for (var repo of repos){
       let name = repo["name"];
       this._stats.getPageViews(name).subscribe(data => {
-        this.viewMap.set(name, data.views);
-        this.totalViews += data.count;
+        for (var view of data.views){
+          if (!this.viewMap.has(view["timestamp"])){
+            this.viewMap.set(view["timestamp"], {count: view["count"], uniques: view["uniques"]});
+          }
+          else {
+            var obj = this.viewMap.get(view["timestamp"]);
+            var newCount = view["count"] + obj.count;
+            var newUniques = view["uniques"] + obj.uniques;
+            this.viewMap.set(view["timestamp"], {count: newCount, uniques: newUniques});
+          }
+        }
+        this.totalViews += data.count; 
     });
     }
   }
@@ -306,6 +316,10 @@ viewsLineOptions: (ChartOptions & { annotation: any }) = {
     display: true,
     fontColor: 'whitesmoke',
     fontSize: 20
+  },
+  hover: {
+    mode: 'nearest',
+    intersect: true
   }
 };
 
@@ -326,14 +340,13 @@ hydrateMaps(){
     }
     this.commitLineLabels = this.getWeeksAgo();
     
-    let general = []; let uniques = []
+    let general = []; let uniques = []; 
+    this.viewMap = new Map([...this.viewMap.entries()].sort());
     for (const [key, value] of this.viewMap.entries()){
-      for (var val of value){
-        general.push(val.count);
-        uniques.push(val.uniques)
-        this.viewsLineLabels.push(val["timestamp"]);
-      }
+      general.push(value.count);
+      uniques.push(value.uniques);
     }
+    this.viewsLineLabels = Array.from(this.viewMap.keys());
     this.viewsLineChart = [
       { data: general, label: "Total Visitors", hoverBackgroundColor: 'red'},
       { data: uniques, label: "Unique Visitors", hoverBackgroundColor: 'blue'}

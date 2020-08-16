@@ -32,7 +32,6 @@ export class RepoPageComponent implements OnInit {
   };
 
   ngAfterViewInit(){
-    
   }
 
 }

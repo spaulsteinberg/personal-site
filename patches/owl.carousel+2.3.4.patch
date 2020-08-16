@@ -1,0 +1,16 @@
+diff --git a/node_modules/owl.carousel/src/scss/_theme.default.scss b/node_modules/owl.carousel/src/scss/_theme.default.scss
+index 942a15e..9c1fba0 100644
+--- a/node_modules/owl.carousel/src/scss/_theme.default.scss
++++ b/node_modules/owl.carousel/src/scss/_theme.default.scss
+@@ -2,9 +2,9 @@
+  * 	Default theme - Owl Carousel CSS File
+  */
+ 
+-$color-base:			#869791 !default;
++$color-base:			#ff6666 !default;
+ $color-white:			#FFF !default;
+-$color-gray:			#D6D6D6 !default;
++$color-gray:			skyblue !default;
+ 
+ //nav
+ 
