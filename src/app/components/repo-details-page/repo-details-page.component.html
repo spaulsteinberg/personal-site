@@ -3,7 +3,7 @@
     <p *ngIf="errorMessageLanguage != ''">{{errorMessageLanguage}}</p>
 </div>
 <ng-template #chartBlock>
-    <div class="jumbotron" style="background-color:transparent; box-shadow: none;">
+    <div class="jumbotron text-white" style="background-color:transparent; box-shadow: none;">
         <h2 class="display-4 text-center">{{repositoryName}} Repository</h2>
         <h4 class="display-6 text-center"> Total Commits: {{repoCommitTotal}}</h4>
         <h4 class="display-6 text-center" *ngIf="mostRecentCommitWeek != undefined">Week of last commit: {{mostRecentCommitWeek}}</h4>
@@ -19,6 +19,11 @@
                                     [chartType]="doughnutChartType"
                                     [options]="doughnutChartOptions">
                         </canvas>
+                        <div style="margin-left: 40%; margin-top:1%;">
+                            <span class="text-white">
+                                *Numbers are in Percentage Format
+                            </span>
+                    </div>
                     </div>
                 </div>
                 <div class="item">

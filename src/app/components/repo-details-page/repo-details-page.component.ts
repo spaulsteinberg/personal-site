@@ -48,10 +48,11 @@ export class RepoDetailsPageComponent implements OnInit {
   doughnutChartOptions:any = {
     legend : {
         labels : {
-          fontColor : 'teal'  
+          fontColor : 'white',
+          fontSize: 18
         }
     }
-};
+  };
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params: ParamMap) => {
@@ -86,9 +87,13 @@ export class RepoDetailsPageComponent implements OnInit {
     this._stats.getRepoLanguageStatistics(this.repositoryName)
             .subscribe(data => {
               this.languageData = data;
+              let total = 0;
+              for (const [key, value] of Object.entries(this.languageData)) {
+                total += this.languageData[key];
+              }
               for (const [key, value] of Object.entries(this.languageData)) {
                 this.doughnutChartLabels.push(key);
-                this.doughnutChartData.push(value);
+                this.doughnutChartData.push(((this.languageData[key]/total)*100).toFixed(1));
               }
               
             },
@@ -124,7 +129,8 @@ lineChartOptions: (ChartOptions & { annotation: any }) = {
   responsive: true,
   legend : {
     labels : {
-      fontColor : '#ffffff'  
+      fontColor : '#ffffff',
+      fontSize: 18
     }
   },
   scales: {
@@ -161,14 +167,13 @@ lineChartOptions: (ChartOptions & { annotation: any }) = {
       {
         type: 'line',
         mode: 'vertical',
-        scaleID: 'x-axis-0',
+        scaleID: 'y-axis-0',
         value: 'March',
         borderColor: 'white',
         borderWidth: 2,
         label: {
           enabled: true,
-          fontColor: 'orange',
-          content: 'LineAnno'
+          fontColor: 'orange'
         }
       },
     ],
