@@ -8,3 +8,6 @@
 form {
     color: whitesmoke;
 }
+.first-name-invalid-message, .last-name-invalid-message {
+    margin-left: 2em;
+}

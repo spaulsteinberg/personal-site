@@ -1,11 +1,21 @@
 <form [formGroup]="registerForm">
     <div class="form-group">
         <label>First Name</label>
-        <input type="text" formControlName="firstName" class="form-control">
+        <!--in line with label on page-->
+        <span class="first-name-invalid-message" *ngIf="firstName.invalid && firstName.touched">
+            <small class="text-danger" *ngIf="firstName.errors?.required">*First Name is a required field</small>
+            <small class="text-danger" *ngIf="firstName.errors?.minlength || firstName.errors?.maxlength">*First Name must be between 3 and 15 characters</small>
+            <small class="text-danger" *ngIf="firstName.errors?.invalidName">{{firstName.errors?.invalidName.value}} is not allowed as a name.</small>
+        </span>
+        <input type="text" [class.is-invalid]="firstName.invalid && firstName.touched" formControlName="firstName" class="form-control">
     </div>
     <div class="form-group">
         <label>Last Name</label>
-        <input type="text" formControlName="lastName" class="form-control">
+        <span class="last-name-invalid-message" *ngIf="lastName.invalid && lastName.touched">
+            <small class="text-danger" *ngIf="lastName.errors?.required">*Last Name is a required field</small>
+            <small class="text-danger" *ngIf="lastName.errors?.minlength || lastName.errors?.maxlength">*Last Name must be between 2 and 30 characters</small>
+        </span>
+        <input type="text" [class.is-invalid]="lastName.invalid && lastName.touched" formControlName="lastName" class="form-control">
     </div>
     <div class="form-group">
         <label>Email</label>

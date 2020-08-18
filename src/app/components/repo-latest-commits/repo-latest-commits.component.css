@@ -5,7 +5,7 @@ table, .mat-paginator {
 }
 .header {
     font-size: 20px;
-    color: violet;
+    color: lightblue;
     width: 15% !important; /* this keep headers from moving */
 }
 .header-url {
