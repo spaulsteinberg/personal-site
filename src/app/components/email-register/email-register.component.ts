@@ -13,7 +13,7 @@ export class EmailRegisterComponent implements OnInit {
 
   registerForm = this.fb.group({
     firstName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(15), invalidNameValidator]],
-    lastName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(30)]],
+    lastName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(30), invalidNameValidator]],
     email: ['', [Validators.required]],
     phone: ['']
   });

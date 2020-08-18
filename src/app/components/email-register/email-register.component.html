@@ -2,10 +2,11 @@
     <div class="form-group">
         <label>First Name</label>
         <!--in line with label on page-->
-        <span class="first-name-invalid-message" *ngIf="firstName.invalid && firstName.touched">
+        <span class="first-name-invalid-message" *ngIf="firstName.invalid && firstName.touched" style="overflow:hidden;">
             <small class="text-danger" *ngIf="firstName.errors?.required">*First Name is a required field</small>
             <small class="text-danger" *ngIf="firstName.errors?.minlength || firstName.errors?.maxlength">*First Name must be between 3 and 15 characters</small>
-            <small class="text-danger" *ngIf="firstName.errors?.invalidName">{{firstName.errors?.invalidName.value}} is not allowed as a name.</small>
+            <small class="text-danger" *ngIf="firstName.errors?.invalidName"><span *ngIf="firstName.errors?.invalidName.value.length < 25">{{firstName.errors?.invalidName.value}}</span> is not allowed as a name.</small>
+            <small class="text-danger" *ngIf="firstName.errors?.numberName"> <span *ngIf="firstName.errors?.numberName.value.length < 25">{{firstName.errors?.numberName.value}}</span> has numeric values.</small>
         </span>
         <input type="text" [class.is-invalid]="firstName.invalid && firstName.touched" formControlName="firstName" class="form-control">
     </div>
@@ -14,6 +15,8 @@
         <span class="last-name-invalid-message" *ngIf="lastName.invalid && lastName.touched">
             <small class="text-danger" *ngIf="lastName.errors?.required">*Last Name is a required field</small>
             <small class="text-danger" *ngIf="lastName.errors?.minlength || lastName.errors?.maxlength">*Last Name must be between 2 and 30 characters</small>
+            <small class="text-danger" *ngIf="lastName.errors?.invalidName"><span *ngIf="lastName.errors?.invalidName.value.length < 35">{{lastName.errors?.invalidName.value}}</span> is not allowed as a name.</small>
+            <small class="text-danger" *ngIf="lastName.errors?.numberName"> <span *ngIf="lastName.errors?.numberName.value.length < 35">{{lastName.errors?.numberName.value}}</span> has numeric values.</small>
         </span>
         <input type="text" [class.is-invalid]="lastName.invalid && lastName.touched" formControlName="lastName" class="form-control">
     </div>
