@@ -3,8 +3,8 @@ import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/htt
 import { ApiAuthService } from './api-auth.service';
 import { throwError, Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { GITHUB_API } from '../Constants/Constants';
-import { IPageViews } from '../models/ITraffic'
+import { GITHUB_API } from '../../Constants/Constants';
+import { IPageViews } from '../../models/ITraffic'
 
 @Injectable({
   providedIn: 'root'

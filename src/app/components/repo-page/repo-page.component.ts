@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RepoServiceService } from '../../shared/repo-service.service';
+import { RepoServiceService } from '../../shared/services/repo-service.service';
 import { Router } from '@angular/router';
 import * as $ from 'jquery/dist/jquery.min.js';
 

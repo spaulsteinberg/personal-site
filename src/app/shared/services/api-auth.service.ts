@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders } from '@angular/common/http';
-import { GITHUB_API } from '../Constants/Constants';
+import { GITHUB_API } from '../../Constants/Constants';
 
 @Injectable({
   providedIn: 'root'

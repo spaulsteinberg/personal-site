@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiAuthService } from 'src/app/shared/api-auth.service';
+import { ApiAuthService } from 'src/app/shared/services/api-auth.service';
 import * as $ from 'jquery/dist/jquery.min.js';
 
 @Component({

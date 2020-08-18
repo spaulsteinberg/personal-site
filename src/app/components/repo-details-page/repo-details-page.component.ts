@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { IndividualRepoStatsService } from 'src/app/shared/individual-repo-stats.service';
-import { LanguageParseService } from 'src/app/shared/language-parse.service';
+import { IndividualRepoStatsService } from 'src/app/shared/services/individual-repo-stats.service';
+import { LanguageParseService } from 'src/app/shared/services/language-parse.service';
 import { ChartDataSets, ChartOptions } from 'chart.js';
 import { Color, BaseChartDirective, Label } from 'ng2-charts';
 import * as pluginAnnotations from 'chartjs-plugin-annotation';

@@ -1,13 +1,13 @@
 import { Component, OnInit, ViewChild, NgZone, ANALYZE_FOR_ENTRY_COMPONENTS } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ICommit } from '../../models/ICommit';
-import { IndividualRepoStatsService } from '../../shared/individual-repo-stats.service';
-import { ApiAuthService } from 'src/app/shared/api-auth.service';
+import { IndividualRepoStatsService } from '../../shared/services/individual-repo-stats.service';
+import { ApiAuthService } from 'src/app/shared/services/api-auth.service';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 import { interval } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { RepoServiceService } from 'src/app/shared/repo-service.service';
+import { RepoServiceService } from 'src/app/shared/services/repo-service.service';
 import * as $ from 'jquery/dist/jquery.min.js';
 import { MatSort } from '@angular/material/sort';
 

@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { IndividualRepoStatsService } from 'src/app/shared/individual-repo-stats.service';
-import { RepoServiceService } from 'src/app/shared/repo-service.service';
+import { IndividualRepoStatsService } from 'src/app/shared/services/individual-repo-stats.service';
+import { RepoServiceService } from 'src/app/shared/services/repo-service.service';
 import { mergeMap, tap, catchError } from 'rxjs/operators';
 import { IRepo } from '../../models/IRepo';
 import { of } from 'rxjs';
@@ -91,7 +91,7 @@ export class UserStatsComponent implements OnInit {
             this.viewMap.set(view["timestamp"], {count: newCount, uniques: newUniques});
           }
         }
-        this.totalViews += data.count; 
+        this.totalViews += data.count;
     });
     }
   }
