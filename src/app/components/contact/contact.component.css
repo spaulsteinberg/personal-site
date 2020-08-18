@@ -8,9 +8,12 @@
     border-color: transparent;
 }
 a {
-    color: orange;
+    color: lightblue;
 }
 
 .email-pic:hover {
     cursor: pointer;
+}
+.row {
+    color: whitesmoke;
 }

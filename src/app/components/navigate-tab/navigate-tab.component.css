@@ -1,5 +1,5 @@
 .row {
-    color: orange;
+    color: whitesmoke;
     font-size: 25px;
 }
 
@@ -39,7 +39,7 @@
 
   .flip-card-front {
       background-color: transparent;
-      border: 1px solid dodgerblue;
+      border: 1px solid lightgray;
   }
   
   /* Style the back side */
@@ -54,5 +54,5 @@
       padding-left: 7%;
   }
   a {
-      color: magenta;
+      color: whitesmoke;
   }

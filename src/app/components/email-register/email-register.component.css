@@ -1,6 +1,10 @@
 .form-control {
     width: 50%;
+    background-color: whitesmoke;
 }
 .submit-button {
     padding-left: 17%;
+}
+form {
+    color: whitesmoke;
 }

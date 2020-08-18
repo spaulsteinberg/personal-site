@@ -1,7 +1,7 @@
 <span class="text-danger" *ngIf="error != ''">Something went wrong in request: {{error}}</span>
 <div class="jumbotron" style="background-color:transparent; box-shadow: none;">
   <img src="../../assets/user-stats-images/github-joke-logo.jpg" alt="github_logo.png" class="rounded-pill mx-auto d-block" height="100px">
-  <h2 class="display-4 text-center" style="padding-left: 5px;">GitHub Stats</h2>
+  <h2 class="display-4 text-center" style="padding-left: 5px; color:whitesmoke;">GitHub Stats</h2>
 </div>
 <div class="row">
     <div class="col col-lg-8 offset-lg-2">
@@ -34,7 +34,7 @@
                 </div>
                 <div class="item">
                   <div style="display:block;" *ngIf="viewsLineChart?.length && viewsLineChart?.length > 0">
-                    <div class="justify-content-center text-white" style="padding-left: 40%; font-size: 18px;">
+                    <div class="justify-content-center" style="padding-left: 40%; font-size: 18px; color: whitesmoke">
                       Total Views Since Tracking Began: {{totalViews}}
                     </div>
                     <canvas baseChart 

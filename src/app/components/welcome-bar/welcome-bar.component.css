@@ -8,3 +8,6 @@
     font-family: 'Courier New', Courier, monospace;
     left: 5%;
 }
+p, .row {
+    color: whitesmoke;
+}

@@ -11,6 +11,9 @@
 .card {
     width: 250%;
 }
+.jumbotron {
+    color: whitesmoke;
+}
 .owl-theme .owl-dots .owl-dot span {
     transition: all .2s ease!important;
  }
