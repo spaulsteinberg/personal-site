@@ -10,7 +10,7 @@
                     <a (click)="viewRepoDetails(repo)">
                         <div class="card text-center">
                             <div class="card-header">
-                                {{repo.name}} <span *ngIf="repo.language != null">{{" - " + repo.language}}</span>
+                                {{repo.name}}
                             </div>
                             <div class="card-body">
                                 {{repo.description}} <span *ngIf="repo.description == null" class="text-danger">*No description provided</span>

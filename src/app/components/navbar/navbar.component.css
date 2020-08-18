@@ -1,10 +1,11 @@
 nav {
-    background-color: #869594;
+    background-color: black;
+    border-bottom: 1px solid whitesmoke;
 }
 .navbar-brand:hover {
     text-decoration: none;
-    color: blue;
+    color: lightskyblue;
 }
 .active {
-    color: green !important;
+    color: darkgray !important;
 }

@@ -91,9 +91,12 @@ export class RepoDetailsPageComponent implements OnInit {
               for (const [key, value] of Object.entries(this.languageData)) {
                 total += this.languageData[key];
               }
+              let percentage = "";
               for (const [key, value] of Object.entries(this.languageData)) {
-                this.doughnutChartLabels.push(key);
-                this.doughnutChartData.push(((this.languageData[key]/total)*100).toFixed(1));
+                percentage = ((this.languageData[key]/total)*100).toFixed(1);
+                if (parseInt(percentage) == 0.0) this.doughnutChartLabels.push(key.concat(" - ", "<1%"));
+                else this.doughnutChartLabels.push(key.concat(" - ", percentage.toString(), "%"));
+                this.doughnutChartData.push(percentage);
               }
               
             },
