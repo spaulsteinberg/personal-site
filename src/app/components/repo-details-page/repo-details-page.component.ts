@@ -51,6 +51,18 @@ export class RepoDetailsPageComponent implements OnInit {
           fontColor : 'white',
           fontSize: 18
         }
+    },
+    plugins: {
+      datalabels: {
+        color: 'whitesmoke',
+        formatter: function(value){ //pass % in here and have the label display accordingly rounded
+          return (Math.round(value * 10) / 10) + '%';
+        },
+        font: {
+          weight: 'bold',
+          size: 15
+        }
+      }
     }
   };
 
@@ -181,6 +193,11 @@ lineChartOptions: (ChartOptions & { annotation: any }) = {
       },
     ],
   },
+  plugins: {
+    datalabels: {
+      display: false
+    }
+  }
 };
 public lineChartColors: Color[] = [
   { // lightgreen

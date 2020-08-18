@@ -23,6 +23,9 @@
                 </div>
                 <div class="item">
                   <div style="display:block;" *ngIf="commitsLineChart?.length && commitsLineChart?.length > 0">
+                    <div class="justify-content-center" style="padding-left: 42%; font-size: 18px; color: whitesmoke">
+                      Yearly Commit Total: {{totalCommitsYearly}}
+                    </div>
                     <canvas baseChart 
                         [datasets]="commitsLineChart"
                         [labels]="commitLineLabels"
@@ -34,7 +37,7 @@
                 </div>
                 <div class="item">
                   <div style="display:block;" *ngIf="viewsLineChart?.length && viewsLineChart?.length > 0">
-                    <div class="justify-content-center" style="padding-left: 40%; font-size: 18px; color: whitesmoke">
+                    <div class="justify-content-center" style="padding-left: 39%; font-size: 18px; color: whitesmoke">
                       Total Views Since Tracking Began: {{totalViews}}
                     </div>
                     <canvas baseChart 

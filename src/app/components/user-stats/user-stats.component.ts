@@ -96,6 +96,7 @@ export class UserStatsComponent implements OnInit {
     }
   }
 
+  totalCommitsYearly = 0;
   commitMap = new Map();
   getCommitsYearly(repos){
     for (var repo of repos){
@@ -248,6 +249,11 @@ commitLineOptions: (ChartOptions & { annotation: any }) = {
     display: true,
     fontColor: 'whitesmoke',
     fontSize: 20
+  },
+  plugins: {
+    datalabels: {
+      display: false
+    }
   }
 };
 
@@ -321,6 +327,11 @@ viewsLineOptions: (ChartOptions & { annotation: any }) = {
   hover: {
     mode: 'nearest',
     intersect: true
+  },
+  plugins: {
+    datalabels: {
+      display: false
+    }
   }
 };
 
@@ -338,6 +349,9 @@ hydrateMaps(){
 
     for (const [key, value] of this.commitMap.entries()){
       this.commitsLineChart.push({data: value, label: key});
+      for (var commits of value){
+        this.totalCommitsYearly += commits;
+      }
     }
     this.commitLineLabels = this.getWeeksAgo();
     
