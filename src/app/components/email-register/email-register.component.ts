@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { invalidNameValidator } from '../../shared/validators/name.validator';
+import { validateEmailAddress } from 'src/app/shared/validators/email.validator';
 
 @Component({
   selector: 'email-register',
@@ -14,7 +15,7 @@ export class EmailRegisterComponent implements OnInit {
   registerForm = this.fb.group({
     firstName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(15), invalidNameValidator]],
     lastName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(30), invalidNameValidator]],
-    email: ['', [Validators.required]],
+    email: ['', [Validators.required, validateEmailAddress]],
     phone: ['']
   });
 
