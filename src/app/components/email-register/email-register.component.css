@@ -10,6 +10,7 @@ form {
 }
 .first-name-invalid-message,
 .last-name-invalid-message,
-.email-invalid-message {
+.email-invalid-message,
+.phone-invalid-message {
     margin-left: 2em;
 }

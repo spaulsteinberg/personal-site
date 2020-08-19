@@ -28,6 +28,7 @@ import { ContactComponent } from './components/contact/contact.component';
 import { UserStatsComponent } from './components/user-stats/user-stats.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSortModule } from '@angular/material/sort';
+import { PhoneNumberDirective } from './shared/directives/phone-number.directive';
 
 
 
@@ -48,7 +49,8 @@ import { MatSortModule } from '@angular/material/sort';
     PageNotFoundComponent,
     RepoDetailsPageComponent,
     ContactComponent,
-    UserStatsComponent
+    UserStatsComponent,
+    PhoneNumberDirective
   ],
   imports: [
     BrowserModule,

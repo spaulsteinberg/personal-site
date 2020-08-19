@@ -30,12 +30,13 @@
     </div>
     <div class="form-group">
         <label>Phone</label>
-        <input type="tel" formControlName="phone" class="form-control">
+        <span class="phone-invalid-message" *ngIf="phone.invalid && phone.touched">
+            <small class="text-danger" *ngIf="phone.errors?.phoneLengthError">{{phone.errors?.phoneLengthError.value}}</small>
+        </span>
+        <input mask-phone-number [class.is-invalid]="phone.invalid && phone.touched" ngControl="phone" type="text" formControlName="phone" class="form-control" maxlength="16">
+        <small class="text-info">Please enter in (111)-111-1111 format</small>
     </div>
     <div class="submit-button"> <!-- remember to disable this if the form is invalid -->
         <button class="btn btn-primary" type="submit">Submit</button>
     </div>
 </form>
-<div class="text-white">
-    {{registerForm.value | json}}
-</div>
