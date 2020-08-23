@@ -18,7 +18,8 @@ export class EmailRegisterComponent implements OnInit {
     firstName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(15), invalidNameValidator]],
     lastName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(30), invalidNameValidator]],
     email: ['', [Validators.required, validateEmailAddress]],
-    phone: ['', [phoneValidator]]
+    phone: ['', [Validators.required, phoneValidator]],
+    description: ['', [Validators.maxLength(100)]]
   });
 
   //call with firstName...getters no () required
@@ -33,6 +34,13 @@ export class EmailRegisterComponent implements OnInit {
   }
   get phone(){
     return this.registerForm.get('phone');
+  }
+  get description(){
+    return this.registerForm.get('description');
+  }
+
+  onFormSubmit(){
+    console.log(this.registerForm.value);
   }
 
   ngOnInit(): void {
