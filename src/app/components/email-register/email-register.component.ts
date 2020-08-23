@@ -4,6 +4,7 @@ import { invalidNameValidator } from '../../shared/validators/name.validator';
 import { validateEmailAddress } from 'src/app/shared/validators/email.validator';
 import { PhoneNumberDirective } from 'src/app/shared/directives/phone-number.directive';
 import { phoneValidator } from 'src/app/shared/validators/phone.validator';
+import { SubmitContactService } from 'src/app/shared/services/submit-contact.service';
 @Component({
   selector: 'email-register',
   templateUrl: './email-register.component.html',
@@ -12,7 +13,7 @@ import { phoneValidator } from 'src/app/shared/validators/phone.validator';
 })
 export class EmailRegisterComponent implements OnInit {
 
-  constructor(private fb : FormBuilder) { }
+  constructor(private fb : FormBuilder, private _subService : SubmitContactService) { }
 
   registerForm = this.fb.group({
     firstName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(15), invalidNameValidator]],
@@ -39,8 +40,11 @@ export class EmailRegisterComponent implements OnInit {
     return this.registerForm.get('description');
   }
 
+  // send the form data, subscribe to the response.
   onFormSubmit(){
-    console.log(this.registerForm.value);
+    this._subService.submitContactForm(this.registerForm.value)
+        .subscribe(data => console.log(data),
+                   error => console.log(error));
   }
 
   ngOnInit(): void {
