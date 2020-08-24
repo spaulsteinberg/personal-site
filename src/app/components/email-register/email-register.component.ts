@@ -16,9 +16,9 @@ export class EmailRegisterComponent implements OnInit {
   constructor(private fb : FormBuilder, private _subService : SubmitContactService) { }
 
   registerForm = this.fb.group({
-    firstName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(15), invalidNameValidator]],
+    firstName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20), invalidNameValidator]],
     lastName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(30), invalidNameValidator]],
-    email: ['', [Validators.required, validateEmailAddress]],
+    email: ['', [Validators.required, Validators.maxLength(320), validateEmailAddress]],
     phone: ['', [Validators.required, phoneValidator]],
     description: ['', [Validators.maxLength(100)]]
   });
