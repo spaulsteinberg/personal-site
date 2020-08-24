@@ -24,7 +24,7 @@ const routes: Routes = [
   { path: 'links/repos/info/:repo', component: RepoDetailsPageComponent},
   { path: 'links/commits', component: CommitsPageComponent},
   { path: 'links/userinfo', component: UserStatsComponent},
-  { path: '**', component:PageNotFoundComponent}
+  { path: '**', component:PageNotFoundComponent} //wildcard route go to page not found
 ];
 
 @NgModule({
