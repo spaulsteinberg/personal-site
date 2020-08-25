@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { invalidNameValidator } from '../../shared/validators/name.validator';
 import { validateEmailAddress } from 'src/app/shared/validators/email.validator';
@@ -40,11 +40,30 @@ export class EmailRegisterComponent implements OnInit {
     return this.registerForm.get('description');
   }
 
+  formError:boolean = false;
+  formErrorMessage:string = "";
+  submitSuccess:boolean;
+  formSuccessMessage:string = "";
+  responseComplete:boolean = true;
   // send the form data, subscribe to the response.
   onFormSubmit(){
+    this.responseComplete = false;
     this._subService.submitContactForm(this.registerForm.value)
-        .subscribe(data => console.log(data),
-                   error => console.log(error));
+        .subscribe(
+          response => {
+            this.responseComplete = true;
+            this.formError = false;
+            this.submitSuccess = true;
+            this.formSuccessMessage = response.database_success;
+            console.log(response)
+          },
+          error => {
+            this.responseComplete = true;
+            this.formError = true;
+            this.submitSuccess = false;
+            this.formErrorMessage = error;
+            console.log(error);
+          });
   }
 
   ngOnInit(): void {

@@ -15,3 +15,12 @@ form {
 .description-invalid-message {
     margin-left: 2em;
 }
+.form-fail {
+    margin-left: 10%;
+    font-size: 16pt;
+    font-weight: bold;
+}
+/* set the background of the mat spinner buffer */
+::ng-deep .mat-progress-bar-buffer {
+    background: #E4E8EB;
+}

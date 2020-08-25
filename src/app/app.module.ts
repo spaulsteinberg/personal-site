@@ -29,6 +29,7 @@ import { UserStatsComponent } from './components/user-stats/user-stats.component
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSortModule } from '@angular/material/sort';
 import { PhoneNumberDirective } from './shared/directives/phone-number.directive';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 
 
@@ -65,7 +66,8 @@ import { PhoneNumberDirective } from './shared/directives/phone-number.directive
     MatProgressSpinnerModule,
     MatSortModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatProgressBarModule
   ],
   providers: [FormBuilder],
   bootstrap: [AppComponent]

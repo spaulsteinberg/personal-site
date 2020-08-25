@@ -1,4 +1,4 @@
-<form [formGroup]="registerForm" (ngSubmit)="onFormSubmit()">
+<form [formGroup]="registerForm" (ngSubmit)="onFormSubmit()" *ngIf="submitSuccess === undefined || submitSuccess === false">
     <div class="form-group">
         <label>First Name</label>
         <!--in line with label on page-->
@@ -49,3 +49,12 @@
         <button class="btn btn-primary" [disabled]="!registerForm.valid" type="submit">Submit</button>
     </div>
 </form>
+<div class="form-fail" *ngIf = "submitSuccess === false">
+    <span class="text-danger">Feedback failed to submit!</span>
+</div>
+<div class="form-success" *ngIf="submitSuccess === true && responseComplete">
+    <span class="text-success">Feedback submitted!</span>
+</div>
+<div *ngIf="!responseComplete">
+    <mat-progress-bar mode="indeterminate" style="width: 50%;"></mat-progress-bar>
+</div>

@@ -369,7 +369,7 @@ hydrateMaps(){
     console.log(this.commitsLineChart);
     console.log(this.viewsLineChart);
     this.resourcesLoaded = true;
-  }, 2000);
+  }, 3000);
 }
 
 getWeeksAgo(){
