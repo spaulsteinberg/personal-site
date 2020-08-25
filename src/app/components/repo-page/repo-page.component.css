@@ -14,3 +14,9 @@
 .jumbotron {
     color: whitesmoke;
 }
+.mat-progress-bar {
+    width: 75%;
+}
+::ng-deep .mat-progress-bar-buffer {
+    background: #E4E8EB;
+}

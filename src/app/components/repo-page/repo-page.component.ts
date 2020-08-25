@@ -15,9 +15,17 @@ export class RepoPageComponent implements OnInit {
   userRepos:any = [];
   repoLanguages:Set<string> = new Set<string>();
   errorOnRepo = '';
+  loadingBar:boolean = true;
   ngOnInit(): void {
-    this.repos.getGitHubRepos().subscribe(data => this.userRepos = data,
-                                          error => this.errorOnRepo = error);
+    this.loadingBar = true;
+    this.repos.getGitHubRepos()
+        .subscribe(data => {
+          this.loadingBar = false;
+          this.userRepos = data
+        }, error => {
+          this.loadingBar = false;
+          this.errorOnRepo = error
+        });
   }
 
   viewRepoDetails(repository){

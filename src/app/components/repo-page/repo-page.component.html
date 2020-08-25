@@ -2,6 +2,9 @@
     <img src="../../../assets/project-links-images/repository-pattern.png" alt="repo_pic.jpg" class="rounded mx-auto d-block" height="100px">
     <h2 class="display-4 text-center">Repositories</h2>
 </div>
+<div class="col col-lg-8 offset-lg-3 loading-icon" *ngIf="loadingBar">
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</div>
 <div class="row" *ngIf="userRepos.length > 0; else emptyBlock">
     <div class="col col-lg-8 offset-lg-2">
         <owl-carousel id="carousel-main" [options]="mySlideOptions" [carouselClasses]="['owl-theme', 'sliding']">

@@ -13,7 +13,8 @@ export class ContactComponent implements OnInit {
   schoolEmail:string = "ssteinb2@vols.utk.edu";
   workEmail:string = "samuel.steinberg@schwab.com"
   gitEmail:string = "githubsps@gmail.com";
-  showEmailRegister:boolean = false;
+  showForm:boolean = false;
+  disableMailClick:boolean = false;
   ngOnInit(): void {
   }
 

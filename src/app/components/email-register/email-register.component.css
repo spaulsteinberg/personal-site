@@ -24,3 +24,7 @@ form {
 ::ng-deep .mat-progress-bar-buffer {
     background: #E4E8EB;
 }
+
+#successful-message:hover {
+    cursor: pointer;
+}

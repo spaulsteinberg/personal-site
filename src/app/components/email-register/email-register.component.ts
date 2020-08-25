@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { invalidNameValidator } from '../../shared/validators/name.validator';
 import { validateEmailAddress } from 'src/app/shared/validators/email.validator';
@@ -13,6 +13,8 @@ import { SubmitContactService } from 'src/app/shared/services/submit-contact.ser
 })
 export class EmailRegisterComponent implements OnInit {
 
+  @Input() showForm: boolean;
+  @Output() showFormChange = new EventEmitter();
   constructor(private fb : FormBuilder, private _subService : SubmitContactService) { }
 
   registerForm = this.fb.group({
@@ -38,6 +40,12 @@ export class EmailRegisterComponent implements OnInit {
   }
   get description(){
     return this.registerForm.get('description');
+  }
+
+  // close the successful request message by emitting new value to parent
+  closeInfo(){
+    this.showForm = !this.showForm;
+    this.showFormChange.emit(this.showForm);
   }
 
   formError:boolean = false;
