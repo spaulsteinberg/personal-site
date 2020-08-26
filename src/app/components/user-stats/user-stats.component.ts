@@ -216,7 +216,7 @@ commitLineOptions: (ChartOptions & { annotation: any }) = {
         id: 'y-axis-0',
         position: 'left',
         ticks: {
-          fontColor: 'white',
+          fontColor: 'white'
         },
         scaleLabel: {
           display: true,

@@ -163,6 +163,7 @@ lineChartOptions: (ChartOptions & { annotation: any }) = {
         position: 'left',
         ticks: {
           fontColor: 'white',
+          beginAtZero: true
         }
       },
       {

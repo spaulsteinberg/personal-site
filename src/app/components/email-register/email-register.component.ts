@@ -63,7 +63,7 @@ export class EmailRegisterComponent implements OnInit {
             this.formError = false;
             this.submitSuccess = true;
             this.formSuccessMessage = response.database_success;
-            console.log(response)
+            console.log(response);
           },
           error => {
             this.responseComplete = true;
