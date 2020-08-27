@@ -38,16 +38,37 @@ export class UserStatsComponent implements OnInit {
   error:string = '';
   languageUsageStats = new Map();
   ngOnInit(): void {
+    //hydrate the map on complete
     this._repo.getGitHubRepos()
     .pipe( //use pipe when you want to have multiple operators like merging and error catching
       tap(data => this.getPageViewsForEachRepo(data)),
       tap(data => this.getCommitsYearly(data)),
+      tap(data => this.getTopReferrers(data)),
       mergeMap(data => this.createLanguageMap(data)), //use mergeMap to use the data from the first subscription in the 2nd
       catchError(error => of(`Caught error: ${error}`))
-    ).subscribe();
+    ).subscribe({
+      complete: () => this.hydrateMaps()
+    });
+  }
 
-    this.hydrateMaps();
-    
+  referMap = new Map();
+  topReferrer;
+  topReferrerCount;
+  getTopReferrers(repos){
+    for (let repo of repos){
+      this._stats.getReferrers(repo["name"])
+      .subscribe(data => {
+        for (let referral of data){
+          if(!this.referMap.has(referral['referrer'])){
+            this.referMap.set(referral['referrer'], referral['count']);
+          }
+          else {
+            this.referMap.set(referral['referrer'], this.referMap.get(referral['referrer']) + referral['count']);
+          }
+        }
+        },
+        error => console.log(error))
+    }
   }
   
   async createLanguageMap(repos:IRepo[]){
@@ -369,6 +390,8 @@ hydrateMaps(){
     console.log(this.commitsLineChart);
     console.log(this.viewsLineChart);
     this.resourcesLoaded = true;
+    let ref = [...this.referMap.entries()].reduce((a, e ) => e[1] > a[1] ? e : a);
+    this.topReferrer = ref[0]; this.topReferrerCount = ref[1];
   }, 3000);
 }
 
@@ -396,7 +419,8 @@ assignChartLabelsForHydrate(){
         "rgba(255,192,203, 0.2)",
         "rgba(255, 141, 56, 0.2)",
         "rgba(255, 69, 0, 0.2)",
-        "rgba(255, 255, 255, 0.2)"
+        "rgba(255, 255, 255, 0.2)",
+        "rgba(255, 140, 0, 0.2)"
      ],
      borderColor:[  
         "rgb(255, 99, 132)",
@@ -413,7 +437,8 @@ assignChartLabelsForHydrate(){
         "rgb(255, 192 ,203)",
         "rgb(255, 141, 56)",
         "rgb(255, 69, 0)",
-        "rgb(255, 255, 255)"
+        "rgb(255, 255, 255)",
+        "rgb(255, 140, 0)"
       ],
       borderWidth: 1,
       hoverBackgroundColor: [
@@ -431,7 +456,8 @@ assignChartLabelsForHydrate(){
         "rgba(255,192,203, 0.7)",
         "rgba(255, 141, 56, 0.7)",
         "rgba(255, 69, 0, 0.7)",
-        "rgba(255, 255, 255, 0.7)"
+        "rgba(255, 255, 255, 0.7)",
+        "rgba(255, 140, 0, 0.7)"
       ]
       }];
 }

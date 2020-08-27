@@ -37,8 +37,9 @@
                 </div>
                 <div class="item">
                   <div style="display:block;" *ngIf="viewsLineChart?.length && viewsLineChart?.length > 0">
-                    <div class="justify-content-center" style="padding-left: calc(42% - 9px); font-size: 18px; color: whitesmoke">
-                      Two Week View Count: {{totalViews}}
+                    <div class="justify-content-center" style="padding-left: calc(30% - 9px); font-size: 18px; color: whitesmoke">
+                      Two Week View Count: {{totalViews}} 
+                      <span style="margin-left: 12%">Top Referrer: {{topReferrer}}</span>
                     </div>
                     <canvas baseChart 
                         [datasets]="viewsLineChart"

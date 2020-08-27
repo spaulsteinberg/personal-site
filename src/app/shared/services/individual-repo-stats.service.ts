@@ -51,6 +51,11 @@ export class IndividualRepoStatsService {
     return this.http.get<IPageViews>(url, this.auth.getHeaders()).pipe(catchError(this.errorHandlerPageViews));
   }
 
+  getReferrers(repoName){
+    const url = `${GITHUB_API.REPO_ENDPOINT}/${repoName}/traffic/popular/referrers`;
+    return this.http.get<any>(url, this.auth.getHeaders()).pipe(catchError(this.errorHandlerTrafficReferrers));
+  }
+
   readMeErrorOrNotFound(error:HttpErrorResponse){
     return throwError(error.message || "ReadMe not found in repo.");
   }
@@ -65,5 +70,9 @@ export class IndividualRepoStatsService {
 
   errorHandlerPageViews(error: HttpErrorResponse){
     return throwError(error.message || "Something went wrong getting page views.");
+  }
+
+  errorHandlerTrafficReferrers(error: HttpErrorResponse){
+    return throwError(error.message || "Error gathering traffic");
   }
 }
