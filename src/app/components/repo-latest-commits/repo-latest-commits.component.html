@@ -1,25 +1,10 @@
 <!--<button class="btn btn-primary" [disabled]="disableOnClick" (click)="disableMeOnClick(); fetchCommits()">hello</button>-->
-<span class="text-danger" *ngIf="!isError">Something went wrong in request</span>
-<!--<table class="table table-striped table-dark">
-    <thead>
-        <tr>
-            <th scope="col">Repo</th>
-            <th scope="col">Message</th>
-            <th scope="col">Date</th>
-            <th scope="col">Link</th>
-        </tr>
-        
-    </thead>
-    <tbody class="text-primary">
-        <tr *ngFor="let commit of toRender">
-            <th>{{commit.repoName}}</th>
-            <th>{{commit.message}}</th>
-            <th>{{commit.date}}</th>
-            <th><a href="{{commit.url}}" target="_blank" class="text-primary">View in GitHub</a></th>
-        </tr>
-    </tbody>
-</table> -->
-
+<span class="text-danger" *ngIf="isError">Something went wrong in request</span>
+<div class="row">
+  <div class="col col-lg-6 offset-lg-3 loading-bar">
+    <mat-progress-bar mode="indeterminate" *ngIf="loadingBar"></mat-progress-bar>
+  </div>
+</div>
 <div class="mat-elevation-z8" id="table-container">
   <table mat-table matSort [dataSource]="dataSource">
 

@@ -33,3 +33,9 @@ table, .mat-paginator {
     box-shadow: none;
     border-color: transparent;
 }
+.loading-bar {
+    margin-top: 5%;
+}
+::ng-deep .mat-progress-bar-buffer {
+    background: #E4E8EB;
+}
