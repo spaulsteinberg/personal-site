@@ -16,6 +16,8 @@ export class AboutComponent implements OnInit {
   ngAfterViewInit(){
     console.log(screen.height);
   }
-  sendToAnalytics= () => this.analytics.eventEmitter("LinkedIn", "select_content", "go_to", "click", 10);
+  sendLinkedInAnalytics = () => this.analytics.eventEmitter("LinkedIn", "select_content", "go_to", "click", 10);
+  sendFacebookAnalytics = () => this.analytics.eventEmitter("Facebook", "select_content", "go_to", "click", 10);
+  sendGithubAnalytics = () => this.analytics.eventEmitter("GitHub", "select_content", "go_to", "click", 10);
 
 }

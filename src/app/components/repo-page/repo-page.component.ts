@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RepoServiceService } from '../../shared/services/repo-service.service';
 import { Router } from '@angular/router';
 import * as $ from 'jquery/dist/jquery.min.js';
+import { GoogleAnalyticsService } from 'src/app/shared/services/google-analytics.service';
 
 @Component({
   selector: 'app-repo-page',
@@ -10,7 +11,7 @@ import * as $ from 'jquery/dist/jquery.min.js';
 })
 export class RepoPageComponent implements OnInit {
 
-  constructor(private repos: RepoServiceService, private router: Router) { }
+  constructor(private repos: RepoServiceService, private router: Router, private analytics: GoogleAnalyticsService) { }
 
   userRepos:any = [];
   repoLanguages:Set<string> = new Set<string>();
@@ -28,6 +29,7 @@ export class RepoPageComponent implements OnInit {
         });
   }
 
+  logAnalytics = (name) => this.analytics.eventEmitter(`Repo ${name}`, "select_content", "go_to", "click", 10);
   viewRepoDetails(repository){
     this.router.navigate(['links/repos/info', repository.name])
   }

@@ -3,7 +3,7 @@
 </div>
 <div class="row text-center justify-content-center mx-auto" id="top">
     <div class="col-sm-3 offset-sm-1">
-        <a routerLink="/about">
+        <a routerLink="/about" (click)="logAnalytics('About Page')">
             <div class="flip-card">
                 <div class="flip-card-inner">
                   <div class="flip-card-front">
@@ -19,7 +19,7 @@
         </a>
     </div>
     <div class="col-sm-3">
-        <a routerLink="/home">
+        <a routerLink="/home" (click)="logAnalytics('Home Page')">
             <div class="flip-card">
                 <div class="flip-card-inner">
                   <div class="flip-card-front">
@@ -34,7 +34,7 @@
         </a>
     </div>
     <div class="col-sm-3">
-        <a routerLink="/links/repos">
+        <a routerLink="/links/repos" (click)="logAnalytics('Repository Page')">
             <div class="flip-card">
                 <div class="flip-card-inner">
                   <div class="flip-card-front">
@@ -51,7 +51,7 @@
 </div>
 <div class="row justify-content-center mx-auto" id="bottom">
     <div class="col-sm-3">
-        <a routerLink="/links/commits">
+        <a routerLink="/links/commits" (click)="logAnalytics('Commits Table')">
             <div class="flip-card">
                 <div class="flip-card-inner">
                   <div class="flip-card-front">
@@ -66,7 +66,7 @@
         </a>
     </div>
     <div class="col-sm-3">
-        <a routerLink="/contact">
+        <a routerLink="/contact" (click)="logAnalytics('Contact Page')">
             <div class="flip-card">
                 <div class="flip-card-inner">
                   <div class="flip-card-front"> 

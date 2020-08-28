@@ -2,7 +2,7 @@
     <div class="col col-sm-4">
         <div class="card text-center">
             <div class="card-header">
-                <a routerLink="repos">
+                <a routerLink="repos" (click)="logAnalytics('Repository Page')">
                     <img src="../../../assets/project-links-images/25231.svg" alt="git_cat.jpg" height="100px">
                     <div class="image-description">Repositories</div>
                 </a>
@@ -16,20 +16,20 @@
     <div class="col col-sm-4">
         <div class="card text-center">
             <div class="card-header">
-                <a routerLink="commits">
+                <a routerLink="commits" (click)="logAnalytics('Commits Table')">
                     <img src="../../assets/project-links-images/git-extension.gif" alt="git_extension_mirror.png" height="100px">
                     <div class="image-description">Latest Commits</div>
                 </a>
             </div>
             <div class="card-body">
-                View latest commits by <a href="https://github.com/spaulsteinberg" target="_blank">spaulsteinberg</a>
+                View latest commits by <a href="https://github.com/spaulsteinberg" (click)="logAnalytics('GitHub')" target="_blank">spaulsteinberg</a>
             </div>
         </div>
     </div>
     <div class="col col-sm-4">
         <div class="card text-center">
             <div class="card-header">
-                <a routerLink="userinfo">
+                <a routerLink="userinfo" (click)="logAnalytics('User Info Charts')">
                     <img src="../../assets/project-links-images/repos.png" alt="repos.png" height="100px">
                     <div class="image-description"> User Demography</div>
                 </a>

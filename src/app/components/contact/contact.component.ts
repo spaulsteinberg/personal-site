@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GoogleAnalyticsService } from 'src/app/shared/services/google-analytics.service';
 
 @Component({
   selector: 'app-contact',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContactComponent implements OnInit {
 
-  constructor() { }
+  constructor(private analytics: GoogleAnalyticsService) { }
 
   personalEmail:string = "sampaulsteinberg@gmail.com";
   schoolEmail:string = "ssteinb2@vols.utk.edu";
@@ -17,5 +18,6 @@ export class ContactComponent implements OnInit {
   disableMailClick:boolean = false;
   ngOnInit(): void {
   }
+  logAnalytics = (linkName) => this.analytics.eventEmitter(linkName, "select_content", "go_to", "click", 10);
 
 }
