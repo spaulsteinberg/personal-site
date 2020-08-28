@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import * as $ from 'jquery/dist/jquery.min.js';
+import { GoogleAnalyticsService } from '../../shared/services/google-analytics.service';
 @Component({
   selector: 'app-about',
   templateUrl: './about.component.html',
@@ -7,7 +7,7 @@ import * as $ from 'jquery/dist/jquery.min.js';
 })
 export class AboutComponent implements OnInit {
 
-  constructor() { }
+  constructor(private analytics: GoogleAnalyticsService) { }
 
   title:string = "Summary";
   ngOnInit(): void {
@@ -16,5 +16,6 @@ export class AboutComponent implements OnInit {
   ngAfterViewInit(){
     console.log(screen.height);
   }
+  sendToAnalytics= () => this.analytics.eventEmitter("LinkedIn", "select_content", "go_to", "click", 10);
 
 }
