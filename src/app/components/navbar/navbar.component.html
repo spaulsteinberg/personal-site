@@ -1,7 +1,8 @@
 <nav class="navbar navbar-expand-lg navbar-dark">
-    <a class="navbar-brand" routerLinkActive="active" routerLink="navigate">Navigate</a>
-    <a class="navbar-brand" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" routerLink="/">Home</a>
-    <a class="navbar-brand" routerLinkActive="active" routerLink="links">Project Links</a>
-    <a class="navbar-brand" routerLinkActive="active" routerLink="about">About</a>
-    <a class="navbar-brand" routerLinkActive="active" routerLink="contact">Contact</a>
+    <a class="navbar-brand" routerLinkActive="active" routerLink="navigate" (click)="logAnalytics('Navigate Page')">Navigate</a>
+    <a class="navbar-brand" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" routerLink="/" (click)="logAnalytics('Home Page')">Home</a>
+    <a class="navbar-brand" routerLinkActive="active" routerLink="links" (click)="logAnalytics('Links Page')">Project Links</a>
+    <a class="navbar-brand" routerLinkActive="active" routerLink="about" (click)="logAnalytics('About Page')">About</a>
+    <a class="navbar-brand" routerLinkActive="active" routerLink="contact" (click)="logAnalytics('Contact Page')">Contact</a>
+    <a class="navbar-brand" routerLinkActive="active" routerLink="analytics" (click)="logAnalytics('Analytics Page')">Site Analytics</a>
 </nav>

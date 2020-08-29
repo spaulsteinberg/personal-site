@@ -30,6 +30,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSortModule } from '@angular/material/sort';
 import { PhoneNumberDirective } from './shared/directives/phone-number.directive';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { SiteAnalyticsComponent } from './components/site-analytics/site-analytics.component';
 
 
 
@@ -51,7 +52,8 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     RepoDetailsPageComponent,
     ContactComponent,
     UserStatsComponent,
-    PhoneNumberDirective
+    PhoneNumberDirective,
+    SiteAnalyticsComponent
   ],
   imports: [
     BrowserModule,

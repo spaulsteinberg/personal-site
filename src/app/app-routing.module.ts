@@ -11,6 +11,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { RepoDetailsPageComponent } from './components/repo-details-page/repo-details-page.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { UserStatsComponent } from './components/user-stats/user-stats.component';
+import { SiteAnalyticsComponent } from './components/site-analytics/site-analytics.component';
 
 
 const routes: Routes = [
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'navigate', component: NavigateTabComponent},
   { path: 'links', component: ProjectLinksComponent},
   { path: 'contact', component:ContactComponent},
+  { path: 'analytics', component: SiteAnalyticsComponent},
   { path: 'links/repos', component: RepoPageComponent},
   { path: 'links/repos/info/:repo', component: RepoDetailsPageComponent},
   { path: 'links/commits', component: CommitsPageComponent},
