@@ -12,6 +12,7 @@ import { RepoDetailsPageComponent } from './components/repo-details-page/repo-de
 import { ContactComponent } from './components/contact/contact.component';
 import { UserStatsComponent } from './components/user-stats/user-stats.component';
 import { SiteAnalyticsComponent } from './components/site-analytics/site-analytics.component';
+import { SiteNetworkSpeedComponent } from './components/site-network-speed/site-network-speed.component';
 
 
 const routes: Routes = [
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: 'links', component: ProjectLinksComponent},
   { path: 'contact', component:ContactComponent},
   { path: 'analytics', component: SiteAnalyticsComponent},
+  { path: 'analytics/speedandnetwork', component: SiteNetworkSpeedComponent},
   { path: 'links/repos', component: RepoPageComponent},
   { path: 'links/repos/info/:repo', component: RepoDetailsPageComponent},
   { path: 'links/commits', component: CommitsPageComponent},

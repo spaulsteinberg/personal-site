@@ -31,6 +31,8 @@ import { MatSortModule } from '@angular/material/sort';
 import { PhoneNumberDirective } from './shared/directives/phone-number.directive';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { SiteAnalyticsComponent } from './components/site-analytics/site-analytics.component';
+import { SiteNetworkSpeedComponent } from './components/site-network-speed/site-network-speed.component';
+import { MasterSiteAnalyticsComponent } from './components/master-site-analytics/master-site-analytics.component';
 
 
 
@@ -53,7 +55,9 @@ import { SiteAnalyticsComponent } from './components/site-analytics/site-analyti
     ContactComponent,
     UserStatsComponent,
     PhoneNumberDirective,
-    SiteAnalyticsComponent
+    SiteAnalyticsComponent,
+    SiteNetworkSpeedComponent,
+    MasterSiteAnalyticsComponent
   ],
   imports: [
     BrowserModule,

@@ -7,6 +7,8 @@ import { IViews } from 'src/app/models/IViews';
 import { MatSort } from '@angular/material/sort';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
+import { GoogleAnalyticsService } from 'src/app/shared/services/google-analytics.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-site-analytics',
@@ -19,7 +21,7 @@ export class SiteAnalyticsComponent implements OnInit {
   @ViewChild('sortView') sortView:MatSort;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild('paginatorView', {static: true}) paginatorView: MatPaginator;
-  constructor(private _analytics: AnalyticsService) { }
+  constructor(private _analytics: AnalyticsService, private _logAnalytics: GoogleAnalyticsService, private router: Router) { }
 
   pageviews;
   avgPageTime;
@@ -128,6 +130,10 @@ export class SiteAnalyticsComponent implements OnInit {
           this.dataSourceViews.sort = this.sortView;
           this.viewsLoading = false;
         });
+  }
+  logAnalytics = () => this._logAnalytics.eventEmitter(`Speed Analytics`, "select_content", "go_to", "click", 10);
+  navToSpeedAndNetwork(){
+    this.router.navigate([`${this.router.url}/speedandnetwork`]);
   }
   ngAfterViewInit(){
     
