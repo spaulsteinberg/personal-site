@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { throwError } from 'rxjs';
+import { throwError, Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { ThrowStmt } from '@angular/compiler';
+import { IEvent } from 'src/app/models/IEventData';
+import { IViews } from 'src/app/models/IViews';
 
 @Injectable({
   providedIn: 'root'
@@ -17,14 +19,19 @@ export class AnalyticsService {
     return this.http.get<any>(url).pipe(catchError(this.getPageViewError));
   }
 
-  getEventData30days(){
+  getEventData30days():Observable<IEvent[]>{
     const url = `${this._base}/websiteEventData30days`;
-    return this.http.get<any>(url);
+    return this.http.get<IEvent[]>(url);
   }
 
   getFeedbackRequestCount(){
     const url = `${this._base}/feedback/count`;
     return this.http.get<any>(url).pipe(catchError(this.getFeedbackRequestCountError));
+  }
+
+  getMostVisited30days(){
+    const url = `${this._base}/pagevisits`;
+    return this.http.get<any>(url).pipe(catchError(this.getPageViewError));
   }
 
   getPageViewError(error: HttpErrorResponse){

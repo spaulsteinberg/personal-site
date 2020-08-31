@@ -41,7 +41,7 @@ a.tip:hover span {
     background-color: transparent;
     border-bottom: 0;
 }
-.bio {
+.bio, div {
     font-family: 'Courier New', Courier, monospace;
 }
 .title-tag-container {

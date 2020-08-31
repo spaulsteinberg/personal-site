@@ -1,1 +1,75 @@
-<p>site-analytics works!</p>
+<div class="jumbotron" style="background-color:transparent; box-shadow: none;">
+    <img src="../../../assets/analytics-images/analytics-logo.jpg" alt="googanalytics_logo.jpg" class="rounded mx-auto d-block" height="150px">
+    <h2 class="display-4 text-center" style="padding-left: 5px; color:whitesmoke;">Analytics With Google</h2>
+  </div>
+<!--<div class="row">
+    <div class="col col-lg-8 offset-lg-2 main-analytics-container" *ngIf="pageviews != undefined && isErrorPage === false">
+        <p>Pageviews in last 30 days: {{pageviews}}</p>
+        <p>Average Time Spent On Site Per Session: {{avgPageTime}} minutes</p>
+    </div>
+    <p *ngIf="isErrorPage">{{errorMessage}}</p>
+</div> -->
+<!--<div class="row">
+    <div class="col col-lg-8 offset-lg-2 main-analytics-container" *ngIf="feedbackCount != undefined && isErrorFeedback === false">
+        <p>Feedback Count: {{feedbackCount}}</p>
+    </div>
+    <p *ngIf="isErrorFeedback">{{errorMessageFeedback}}</p>
+</div>-->
+<div class="row">
+    
+    <div class="col col-lg-5 offset-lg-1">
+        <div class="loading-bar" *ngIf="eventsLoading">
+            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+        </div>
+        <div class="mat-elevation-z8">
+            <table mat-table #sort="matSort" matSort [dataSource]="dataSourceEvents">
+          
+              <ng-container matColumnDef="totalEvents">
+                <th class="header header-event" mat-header-cell *matHeaderCellDef mat-sort-header="totalEvents"> Total Events </th>
+                <td mat-cell *matCellDef="let element"> {{element.totalEvents}} </td>
+              </ng-container>
+          
+              
+              <ng-container matColumnDef="uniqueEvents">
+                <th class="header header-event" mat-header-cell *matHeaderCellDef mat-sort-header="uniqueEvents"> Unique Events </th>
+                <td mat-cell *matCellDef="let element"> {{element.uniqueEvents}} </td>
+              </ng-container>
+          
+              
+              <ng-container matColumnDef="action">
+                <th class="header header-action" mat-header-cell *matHeaderCellDef mat-sort-header="action"> Action Name </th>
+                <td mat-cell *matCellDef="let element"> {{element.action}} </td>
+              </ng-container>
+        
+              <tr mat-header-row *matHeaderRowDef="displayedColumnsEvents;"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumnsEvents;"></tr>
+            </table>
+            <mat-paginator #paginator [pageSizeOptions]="[5, 10]" showFirstLastButtons></mat-paginator>
+        </div>
+        <p *ngIf="isErrorEvent === true">{{errorMessageEvent}}</p>
+    </div>
+    <div class="col col-lg-5 offset-lg-1">
+        <div class="loading-bar" *ngIf="viewsLoading">
+            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+        </div>
+        <div class="mat-elevation-z8">
+            <table mat-table #sortView="matSort" matSort [dataSource]="dataSourceViews" id="table-views">
+          
+              <ng-container matColumnDef="path">
+                <th class="header header-path" mat-header-cell *matHeaderCellDef mat-sort-header="path"> Page </th>
+                <td mat-cell *matCellDef="let element"> {{element.path}} </td>
+              </ng-container>
+          
+              
+              <ng-container matColumnDef="views">
+                <th class="header header-views" mat-header-cell *matHeaderCellDef mat-sort-header="views"> Views </th>
+                <td mat-cell *matCellDef="let element"> {{element.views}} </td>
+              </ng-container>
+        
+              <tr mat-header-row *matHeaderRowDef="displayedColumnsViews;"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumnsViews;"></tr>
+            </table>
+            <mat-paginator #paginatorView [pageSizeOptions]="[5, 10]" showFirstLastButtons id="table-views-paginator"></mat-paginator>
+        </div>
+        <p *ngIf="isErrorMostVisited === true">{{errorMessageMostVisited}}</p>
+    </div>

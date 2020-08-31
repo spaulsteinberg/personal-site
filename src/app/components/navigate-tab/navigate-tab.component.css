@@ -1,6 +1,7 @@
-.row {
+.row, div {
     color: whitesmoke;
     font-size: 25px;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 /* Modified from W3 Schools */
@@ -51,7 +52,6 @@
       margin-bottom: 5%;
   }
   #bottom {
-      padding-left: 7%;
   }
   a {
       color: whitesmoke;

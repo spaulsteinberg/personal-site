@@ -49,8 +49,8 @@
         </a>
     </div>
 </div>
-<div class="row justify-content-center mx-auto" id="bottom">
-    <div class="col-sm-3">
+<div class="row text-center justify-content-center mx-auto" id="bottom">
+    <div class="col-sm-3 offset-sm-1">
         <a routerLink="/links/commits" (click)="logAnalytics('Commits Table')">
             <div class="flip-card">
                 <div class="flip-card-inner">
@@ -82,4 +82,21 @@
             </div>
         </a>
     </div>
+    <div class="col-sm-3">
+      <a routerLink="/analytics" (click)="logAnalytics('Analytics Page')">
+          <div class="flip-card">
+              <div class="flip-card-inner">
+                <div class="flip-card-front"> 
+                  Analytics Page
+                  <div>                
+                      <img src="../../../assets/analytics-images/analytics-logo.jpg" alt="analytics.jpg" height="150px">
+                  </div>
+                </div>
+                <div class="flip-card-back">
+                  View the usage statistics of the website!
+                </div>
+              </div>
+          </div>
+      </a>
+  </div>
 </div>

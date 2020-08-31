@@ -1,0 +1,35 @@
+div {
+    color: whitesmoke;
+    font-family: 'Courier New', Courier, monospace;
+}
+.mat-paginator, .mat-table {
+    width: 80%;
+}
+.mat-ripple, .mat-button-ripple.mat-ripple {
+    position: fixed;
+}
+.mat-elevation-z8 {
+    box-shadow: none;
+    border-color: transparent;
+}
+.header {
+    font-size: 20px;
+    color: lightblue;
+    width: 15% !important; /* this keep headers from moving */
+}
+.header-event, .header-views {
+    width: 25% !important;
+}
+.header-path {
+    width: 75% !important;
+}
+.header-action{
+    width: 50% !important;
+}
+.loading-bar {
+    margin: 5% 0 5% 15%;
+    width: 50%;
+}
+::ng-deep .mat-progress-bar-buffer {
+    background: #E4E8EB;
+}

@@ -39,3 +39,7 @@ table, .mat-paginator {
 ::ng-deep .mat-progress-bar-buffer {
     background: #E4E8EB;
 }
+div {
+    color: whitesmoke;
+    font-family: 'Courier New', Courier, monospace;
+}
