@@ -14,6 +14,7 @@ import {MatTableDataSource} from '@angular/material/table';
   styleUrls: ['./site-analytics.component.css']
 })
 export class SiteAnalyticsComponent implements OnInit {
+  //need to specify which paginators/sort use which
   @ViewChild(MatSort) sort:MatSort;
   @ViewChild('sortView') sortView:MatSort;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -128,8 +129,6 @@ export class SiteAnalyticsComponent implements OnInit {
           this.viewsLoading = false;
         });
   }
-  
-  
   ngAfterViewInit(){
     
   }
