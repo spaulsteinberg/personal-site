@@ -5,6 +5,7 @@ import { validateEmailAddress } from 'src/app/shared/validators/email.validator'
 import { PhoneNumberDirective } from 'src/app/shared/directives/phone-number.directive';
 import { phoneValidator } from 'src/app/shared/validators/phone.validator';
 import { SubmitContactService } from 'src/app/shared/services/submit-contact.service';
+import { GoogleAnalyticsService } from 'src/app/shared/services/google-analytics.service';
 @Component({
   selector: 'email-register',
   templateUrl: './email-register.component.html',
@@ -15,7 +16,7 @@ export class EmailRegisterComponent implements OnInit {
 
   @Input() showForm: boolean;
   @Output() showFormChange = new EventEmitter();
-  constructor(private fb : FormBuilder, private _subService : SubmitContactService) { }
+  constructor(private fb : FormBuilder, private _subService : SubmitContactService, private analytics: GoogleAnalyticsService) { }
 
   registerForm = this.fb.group({
     firstName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20), invalidNameValidator]],

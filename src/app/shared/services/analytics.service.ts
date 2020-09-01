@@ -34,6 +34,16 @@ export class AnalyticsService {
     return this.http.get<any>(url).pipe(catchError(this.getPageViewError));
   }
 
+  getTimeMetrics30days(){
+    const url = `${this._base}/speed`;
+    return this.http.get<any>(url).pipe(catchError(this.getTimeMetricsError));
+  }
+
+  getPageViewsOnTime(){
+    const url = `${this._base}/pageViewsOnTime`;
+    return this.http.get<any>(url).pipe(catchError(this.getPageViewError));
+  }
+
   getPageViewError(error: HttpErrorResponse){
     return throwError(error.message || "An error occurred getting analytics data. Please try again.");
   }
@@ -44,5 +54,9 @@ export class AnalyticsService {
 
   getFeedbackRequestCountError(error: HttpErrorResponse){
     return throwError(error.message || "Error occurred fetching feedback count. Please try again.");
+  }
+
+  getTimeMetricsError(error: HttpErrorResponse){
+    return throwError(error.message || "An error occurred fetching time metrics. Please try again.");
   }
 }

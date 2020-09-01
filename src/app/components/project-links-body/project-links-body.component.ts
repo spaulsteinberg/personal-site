@@ -11,9 +11,12 @@ export class ProjectLinksBodyComponent implements OnInit {
   constructor(private analytics: GoogleAnalyticsService) { }
 
   ngOnInit(): void {
+    if (window.performance) {
+      var timeSincePageLoad = Math.round(performance.now());
+      this.analytics.speedEmitter(timeSincePageLoad, 'loading');
+    }
   }
 
   logAnalytics = (linkName) => this.analytics.eventEmitter(linkName, "select_content", "go_to", "click", 10);
-  //logCommitAnalytics = (linkName) => this.analytics.eventEmitter(linkName, "select_content", "go_to", "click", 10);
 
 }

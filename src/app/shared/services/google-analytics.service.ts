@@ -20,4 +20,12 @@ export class GoogleAnalyticsService {
                  eventValue: eventValue
                })
     }
+
+  public speedEmitter(timeSincePageLoad, name){
+    gtag('event', 'timing_complete', {
+      'name': 'load',
+      'value': timeSincePageLoad,
+      'event_category': name
+    });
+  }
 }

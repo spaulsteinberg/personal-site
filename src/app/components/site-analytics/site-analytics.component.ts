@@ -21,7 +21,7 @@ export class SiteAnalyticsComponent implements OnInit {
   @ViewChild('sortView') sortView:MatSort;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild('paginatorView', {static: true}) paginatorView: MatPaginator;
-  constructor(private _analytics: AnalyticsService, private _logAnalytics: GoogleAnalyticsService, private router: Router) { }
+  constructor(private _analytics: AnalyticsService, private _logAnalytics: GoogleAnalyticsService, private router: Router, private route: ActivatedRoute) { }
 
   pageviews;
   avgPageTime;
@@ -37,7 +37,7 @@ export class SiteAnalyticsComponent implements OnInit {
   mostVisitedToRender:IViews[] = [];
   displayedColumnsEvents: string[] = ['totalEvents', 'uniqueEvents', 'action'];
   dataSourceEvents;
-  displayedColumnsViews: string[] = ['path', 'views'];
+  displayedColumnsViews: string[] = ['path', 'views', 'avgTimeOnPage'];
   dataSourceViews;
   eventsLoading:boolean = true;
   viewsLoading:boolean = true;
@@ -110,7 +110,8 @@ export class SiteAnalyticsComponent implements OnInit {
             response['data'].forEach(element => {
               this.mostVisitedToRender.push({
                 'path': element[0],
-                'views': element[2]
+                'views': element[2],
+                'avgTimeOnPage': (parseInt(element[3], 10) / 60).toFixed(1)
               });
             });
           }
@@ -133,7 +134,7 @@ export class SiteAnalyticsComponent implements OnInit {
   }
   logAnalytics = () => this._logAnalytics.eventEmitter(`Speed Analytics`, "select_content", "go_to", "click", 10);
   navToSpeedAndNetwork(){
-    this.router.navigate([`${this.router.url}/speedandnetwork`]);
+    this.router.navigate([`../speedandnetwork`], {relativeTo: this.route});
   }
   ngAfterViewInit(){
     

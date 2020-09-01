@@ -13,6 +13,7 @@ import { ContactComponent } from './components/contact/contact.component';
 import { UserStatsComponent } from './components/user-stats/user-stats.component';
 import { SiteAnalyticsComponent } from './components/site-analytics/site-analytics.component';
 import { SiteNetworkSpeedComponent } from './components/site-network-speed/site-network-speed.component';
+import { MasterSiteAnalyticsComponent } from './components/master-site-analytics/master-site-analytics.component';
 
 
 const routes: Routes = [
@@ -22,7 +23,15 @@ const routes: Routes = [
   { path: 'navigate', component: NavigateTabComponent},
   { path: 'links', component: ProjectLinksComponent},
   { path: 'contact', component:ContactComponent},
-  { path: 'analytics', component: SiteAnalyticsComponent},
+  { 
+    path: 'analytics', 
+    component: MasterSiteAnalyticsComponent,
+  children: [
+    { path: '', redirectTo: 'site', pathMatch: 'full'},
+    { path: 'site', component: SiteAnalyticsComponent },
+    { path: 'speedandnetwork', component: SiteNetworkSpeedComponent}
+  ]
+},
   { path: 'analytics/speedandnetwork', component: SiteNetworkSpeedComponent},
   { path: 'links/repos', component: RepoPageComponent},
   { path: 'links/repos/info/:repo', component: RepoDetailsPageComponent},

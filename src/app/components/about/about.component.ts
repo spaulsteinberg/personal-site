@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GoogleAnalyticsService } from '../../shared/services/google-analytics.service';
+declare let gtag: Function;
 @Component({
   selector: 'app-about',
   templateUrl: './about.component.html',
@@ -11,6 +12,7 @@ export class AboutComponent implements OnInit {
 
   title:string = "Summary";
   ngOnInit(): void {
+// Feature detects Navigation Timing API support.
   }
 
   ngAfterViewInit(){

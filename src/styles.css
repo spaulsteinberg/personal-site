@@ -16,3 +16,7 @@ body {
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
+.next-icon-container:hover, .prev-icon-container:hover {
+    cursor: pointer;
+}

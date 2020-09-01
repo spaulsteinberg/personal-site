@@ -7,6 +7,7 @@ import { of } from 'rxjs';
 import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
 import { BaseChartDirective, Label } from 'ng2-charts';
 import * as pluginDataLabels from 'chartjs-plugin-datalabels';
+import { GoogleAnalyticsService } from 'src/app/shared/services/google-analytics.service';
 
 
 @Component({
@@ -17,7 +18,7 @@ import * as pluginDataLabels from 'chartjs-plugin-datalabels';
 export class UserStatsComponent implements OnInit {
 
   @ViewChild(BaseChartDirective, { static: true }) chart: BaseChartDirective;
-  constructor(private _stats : IndividualRepoStatsService, private _repo : RepoServiceService) { }
+  constructor(private _stats : IndividualRepoStatsService, private _repo : RepoServiceService, private analytics: GoogleAnalyticsService){ }
 
   mySlideOptions = {
     items: 1, 

@@ -5,6 +5,7 @@ import { LanguageParseService } from 'src/app/shared/services/language-parse.ser
 import { ChartDataSets, ChartOptions } from 'chart.js';
 import { Color, BaseChartDirective, Label } from 'ng2-charts';
 import * as pluginAnnotations from 'chartjs-plugin-annotation';
+import { GoogleAnalyticsService } from 'src/app/shared/services/google-analytics.service';
 
 @Component({
   selector: 'app-repo-details-page',
@@ -13,7 +14,7 @@ import * as pluginAnnotations from 'chartjs-plugin-annotation';
 })
 export class RepoDetailsPageComponent implements OnInit {
   @ViewChild(BaseChartDirective, { static: true }) chart: BaseChartDirective;
-  constructor(private route: ActivatedRoute, private _stats : IndividualRepoStatsService, private _languages: LanguageParseService) { }
+  constructor(private route: ActivatedRoute, private _stats : IndividualRepoStatsService, private analytics: GoogleAnalyticsService) { }
 
   repositoryName:string;
   errorMessageCommit = '';

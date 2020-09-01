@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiAuthService } from 'src/app/shared/services/api-auth.service';
 import * as $ from 'jquery/dist/jquery.min.js';
+import { GoogleAnalyticsService } from 'src/app/shared/services/google-analytics.service';
 
 @Component({
   selector: 'app-commits-page',
@@ -9,9 +10,13 @@ import * as $ from 'jquery/dist/jquery.min.js';
 })
 export class CommitsPageComponent implements OnInit {
 
-  constructor(private auth: ApiAuthService) { }
+  constructor(private auth: ApiAuthService, private analytics: GoogleAnalyticsService) { }
 
   ngOnInit(): void {
+    if (window.performance) {
+      var timeSincePageLoad = Math.round(performance.now());
+      this.analytics.speedEmitter(timeSincePageLoad, 'loading');
+    }
   }
 
   ngAfterViewInit(){

@@ -17,11 +17,14 @@ div {
     color: turquoise;
     width: 15% !important; /* this keep headers from moving */
 }
-.header-event, .header-views {
+.header-event{
     width: 25% !important;
 }
+.header-views {
+    width: 20% !important;
+}
 .header-path {
-    width: 75% !important;
+    width: 60% !important;
 }
 .header-action{
     width: 50% !important;

@@ -1,0 +1,33 @@
+div {
+    color: turquoise;
+}
+.mat-table {
+    width: 100%;
+}
+::ng-deep .mat-row, .mat-table, mat-paginator {
+    background: rgba(255,255,255,0);
+}
+::ng-deep .mat-table{
+    border: 1px solid turquoise;
+    box-shadow: turquoise;
+    box-shadow: 0 0 8px 0 turquoise, 0 6px 20px 0 turquoise;
+}
+::ng-deep .mat-paginator {
+    border-bottom: 1px solid turquoise;
+    border-right: 1px solid turquoise;
+    border-left: 1px solid turquoise;
+    box-shadow: 0 0 8px 0 turquoise, 0 6px 20px 0 turquoise;
+}
+::ng-deep .mat-progress-bar-buffer {
+    background: #E4E8EB;
+}
+.loading-bar {
+    margin-bottom: 2%;
+    width: 80%;
+    margin-left: 10%;
+}
+.header {
+    font-size: 20px;
+    color: turquoise;
+    width: 15% !important; /* this keep headers from moving */
+}

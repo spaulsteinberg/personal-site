@@ -11,6 +11,7 @@ import { RepoServiceService } from 'src/app/shared/services/repo-service.service
 import * as $ from 'jquery/dist/jquery.min.js';
 import { MatSort } from '@angular/material/sort';
 import { GITHUB_API } from '../../Constants/Constants';
+import { GoogleAnalyticsService } from 'src/app/shared/services/google-analytics.service';
 
 @Component({
   selector: 'app-repo-latest-commits',
@@ -19,7 +20,8 @@ import { GITHUB_API } from '../../Constants/Constants';
 })
 export class RepoLatestCommitsComponent implements OnInit {
 
-  constructor(private http: HttpClient, private commits: IndividualRepoStatsService, private _com: RepoServiceService, private auth: ApiAuthService) { }
+  constructor(private http: HttpClient, private commits: IndividualRepoStatsService, 
+    private _com: RepoServiceService, private auth: ApiAuthService, private analytics: GoogleAnalyticsService) { }
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort) sort:MatSort;
