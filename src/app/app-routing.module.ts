@@ -14,6 +14,7 @@ import { UserStatsComponent } from './components/user-stats/user-stats.component
 import { SiteAnalyticsComponent } from './components/site-analytics/site-analytics.component';
 import { SiteNetworkSpeedComponent } from './components/site-network-speed/site-network-speed.component';
 import { MasterSiteAnalyticsComponent } from './components/master-site-analytics/master-site-analytics.component';
+import { AnalyticsChartsComponent } from './components/analytics-charts/analytics-charts.component';
 
 
 const routes: Routes = [
@@ -29,7 +30,8 @@ const routes: Routes = [
   children: [
     { path: '', redirectTo: 'site', pathMatch: 'full'},
     { path: 'site', component: SiteAnalyticsComponent },
-    { path: 'speedandnetwork', component: SiteNetworkSpeedComponent}
+    { path: 'speedandnetwork', component: SiteNetworkSpeedComponent},
+    { path: 'analyticscharts', component: AnalyticsChartsComponent}
   ]
 },
   { path: 'analytics/speedandnetwork', component: SiteNetworkSpeedComponent},

@@ -6,7 +6,7 @@
     <span class="stat" *ngIf="feedbackCount != undefined && isErrorFeedback === false; else feedErr">Number of feedback responses received: {{feedbackCount}}</span>
     <ng-template #feedErr>{{errorMessageFeedback}}</ng-template>
     <span class="next-icon-container" style="margin-left:1%;" (click)="logAnalytics(); navToSpeedAndNetwork();">
-      <img src="../../../assets/analytics-images/arrow_right_alt-24px.svg" alt="next.svg">
+      <img src="../../../assets/analytics-images/arrow_forward-24px.svg" alt="next.svg">
     </span>
   </div>
 <div class="row">

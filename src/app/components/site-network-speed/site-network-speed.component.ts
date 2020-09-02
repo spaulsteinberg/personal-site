@@ -53,11 +53,14 @@ export class SiteNetworkSpeedComponent implements OnInit {
         complete: () => this.loading = false
       });
 
-      this.analytics.getPageViewsOnTime().subscribe(data => console.log("HERE: ", data));
   }
-  logAnalytics = () => this._logAnalytics.eventEmitter(`Analytics Page`, "select_content", "go_to", "click", 10);
+  logAnalytics = (name) => this._logAnalytics.eventEmitter(name, "select_content", "go_to", "click", 10);
   navToSiteAnalytics(){
-    this.router.navigate(['../'], {relativeTo: this.route});
+    this.router.navigate(['..'], {relativeTo: this.route});
+  }
+
+  navToCharts(){
+    this.router.navigate(['../analyticscharts'], {relativeTo: this.route});
   }
 
 }

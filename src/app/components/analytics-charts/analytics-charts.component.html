@@ -1,0 +1,61 @@
+<div class="info-container">
+    <span class="prev-icon-container" style="margin-left:5%;" (click)="navToSiteSpeed();">
+      <img src="../../../assets/analytics-images/arrow_back-24px.svg" alt="back.svg">
+    </span>
+</div>
+<div class="loading-bar" *ngIf="isLoading">
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</div>
+<p *ngIf="isError; else chartBlock">{{errMessage}}</p>
+<ng-template #chartBlock>
+    <div *ngIf="sessionDatasets.length > 0 && pageviewDatasets.length > 0 && eventDatasets.length > 0 && hitsVsEventsPerSessionDatasets.length > 0">
+        <div class="row">
+            <div class="col col-lg-4 offset-lg-1">
+                <div style="display: block">
+                    <canvas baseChart
+                          [datasets]="pageviewDatasets"
+                          [options]="pageviewOptions"
+                          [labels]="labels"
+                          [legend]="legend"
+                          [chartType]="lineChartType">
+                    </canvas>
+                  </div>
+            </div>
+            <div class="col col-lg-4 offset-md-2">
+                <div style="display: block">
+                    <canvas baseChart
+                          [datasets]="eventDatasets"
+                          [options]="eventOptions"
+                          [labels]="labels"
+                          [legend]="legend"
+                          [chartType]="lineChartType">
+                    </canvas>
+                  </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col col-lg-4 offset-lg-1">
+                <div style="display: block">
+                    <canvas baseChart
+                          [datasets]="sessionDatasets"
+                          [options]="sessionOptions"
+                          [labels]="labels"
+                          [legend]="legend"
+                          [chartType]="lineChartType">
+                    </canvas>
+                  </div>
+            </div>
+            <div class="col col-lg-4 offset-md-2">
+                <div style="display: block">
+                    <canvas baseChart
+                          [datasets]="hitsVsEventsPerSessionDatasets"
+                          [options]="hitsVsEventsPerSessionOptions"
+                          [labels]="labels"
+                          [legend]="legend"
+                          [chartType]="lineChartType">
+                    </canvas>
+                  </div>
+            </div>
+        </div>
+    </div>
+</ng-template>

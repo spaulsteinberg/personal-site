@@ -33,6 +33,7 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { SiteAnalyticsComponent } from './components/site-analytics/site-analytics.component';
 import { SiteNetworkSpeedComponent } from './components/site-network-speed/site-network-speed.component';
 import { MasterSiteAnalyticsComponent } from './components/master-site-analytics/master-site-analytics.component';
+import { AnalyticsChartsComponent } from './components/analytics-charts/analytics-charts.component';
 
 
 
@@ -57,7 +58,8 @@ import { MasterSiteAnalyticsComponent } from './components/master-site-analytics
     PhoneNumberDirective,
     SiteAnalyticsComponent,
     SiteNetworkSpeedComponent,
-    MasterSiteAnalyticsComponent
+    MasterSiteAnalyticsComponent,
+    AnalyticsChartsComponent
   ],
   imports: [
     BrowserModule,

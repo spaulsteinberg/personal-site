@@ -1,6 +1,9 @@
 <div class="info-container">
-  <span class="prev-icon-container" style="margin-left:5%;" (click)="logAnalytics(); navToSiteAnalytics();">
+  <span class="prev-icon-container" style="margin-left:5%;" (click)="logAnalytics('Analytics Page'); navToSiteAnalytics();">
     <img src="../../../assets/analytics-images/arrow_back-24px.svg" alt="back.svg">
+  </span>
+  <span class="prev-icon-container" style="margin-left:80%;" (click)="logAnalytics('Chart Analytics'); navToCharts();">
+    <img src="../../../assets/analytics-images/arrow_forward-24px.svg" alt="back.svg">
   </span>
 </div>
 <div class="row">
