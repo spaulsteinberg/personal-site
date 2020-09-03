@@ -44,6 +44,16 @@ export class AnalyticsService {
     return this.http.get<any>(url).pipe(catchError(this.getPageViewError));
   }
 
+  getPageViewsOnTimeOneWeek(){
+    const url = `${this._base}/pageViewsOnTimeOneWeek`;
+    return this.http.get<any>(url).pipe(catchError(this.getPageViewError));
+  }
+
+  getPageViewsOnTimeTwoWeeks(){
+    const url = `${this._base}/pageViewsOnTimeTwoWeeks`;
+    return this.http.get<any>(url).pipe(catchError(this.getPageViewError));
+  }
+
   getPageViewError(error: HttpErrorResponse){
     return throwError(error.message || "An error occurred getting analytics data. Please try again.");
   }

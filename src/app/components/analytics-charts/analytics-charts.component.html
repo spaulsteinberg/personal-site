@@ -2,20 +2,23 @@
     <span class="prev-icon-container" style="margin-left:5%;" (click)="navToSiteSpeed();">
       <img src="../../../assets/analytics-images/arrow_back-24px.svg" alt="back.svg">
     </span>
+    <span class="chart-7days" (click)="switchTo7Days()" style="margin-left: 32%; color:red;">7 Days</span>
+    <span class="chart-14days" (click)="switchTo14Days()" style="margin-left: 5%">14 Days</span>
+    <span class="chart-30days" (click)="switchTo30Days()" style="margin-left: 5%;">30 Days</span>
 </div>
 <div class="loading-bar" *ngIf="isLoading">
     <mat-progress-bar mode="indeterminate"></mat-progress-bar>
 </div>
 <p *ngIf="isError; else chartBlock">{{errMessage}}</p>
 <ng-template #chartBlock>
-    <div *ngIf="sessionDatasets.length > 0 && pageviewDatasets.length > 0 && eventDatasets.length > 0 && hitsVsEventsPerSessionDatasets.length > 0">
+    <div *ngIf="chartChoice === 3 && sessionDatasets30days.length > 0 && pageviewDatasets30days.length > 0 && eventDatasets30days.length > 0 && hitsVsEventsPerSessionDatasets30days.length > 0">
         <div class="row">
             <div class="col col-lg-4 offset-lg-1">
                 <div style="display: block">
                     <canvas baseChart
-                          [datasets]="pageviewDatasets"
+                          [datasets]="pageviewDatasets30days"
                           [options]="pageviewOptions"
-                          [labels]="labels"
+                          [labels]="labels30days"
                           [legend]="legend"
                           [chartType]="lineChartType">
                     </canvas>
@@ -24,9 +27,9 @@
             <div class="col col-lg-4 offset-md-2">
                 <div style="display: block">
                     <canvas baseChart
-                          [datasets]="eventDatasets"
+                          [datasets]="eventDatasets30days"
                           [options]="eventOptions"
-                          [labels]="labels"
+                          [labels]="labels30days"
                           [legend]="legend"
                           [chartType]="lineChartType">
                     </canvas>
@@ -37,9 +40,9 @@
             <div class="col col-lg-4 offset-lg-1">
                 <div style="display: block">
                     <canvas baseChart
-                          [datasets]="sessionDatasets"
+                          [datasets]="sessionDatasets30days"
                           [options]="sessionOptions"
-                          [labels]="labels"
+                          [labels]="labels30days"
                           [legend]="legend"
                           [chartType]="lineChartType">
                     </canvas>
@@ -48,9 +51,109 @@
             <div class="col col-lg-4 offset-md-2">
                 <div style="display: block">
                     <canvas baseChart
-                          [datasets]="hitsVsEventsPerSessionDatasets"
+                          [datasets]="hitsVsEventsPerSessionDatasets30days"
                           [options]="hitsVsEventsPerSessionOptions"
-                          [labels]="labels"
+                          [labels]="labels30days"
+                          [legend]="legend"
+                          [chartType]="lineChartType">
+                    </canvas>
+                  </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="chartChoice === 2 && sessionDatasets14days.length > 0 && pageviewDatasets14days.length > 0 && eventDatasets14days.length > 0 && hitsVsEventsPerSessionDatasets14days.length > 0">
+        <div class="row">
+            <div class="col col-lg-4 offset-lg-1">
+                <div style="display: block">
+                    <canvas baseChart
+                          [datasets]="pageviewDatasets14days"
+                          [options]="pageviewOptions"
+                          [labels]="labels14days"
+                          [legend]="legend"
+                          [chartType]="lineChartType">
+                    </canvas>
+                  </div>
+            </div>
+            <div class="col col-lg-4 offset-md-2">
+                <div style="display: block">
+                    <canvas baseChart
+                          [datasets]="eventDatasets14days"
+                          [options]="eventOptions"
+                          [labels]="labels14days"
+                          [legend]="legend"
+                          [chartType]="lineChartType">
+                    </canvas>
+                  </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col col-lg-4 offset-lg-1">
+                <div style="display: block">
+                    <canvas baseChart
+                          [datasets]="sessionDatasets14days"
+                          [options]="sessionOptions"
+                          [labels]="labels14days"
+                          [legend]="legend"
+                          [chartType]="lineChartType">
+                    </canvas>
+                  </div>
+            </div>
+            <div class="col col-lg-4 offset-md-2">
+                <div style="display: block">
+                    <canvas baseChart
+                          [datasets]="hitsVsEventsPerSessionDatasets14days"
+                          [options]="hitsVsEventsPerSessionOptions"
+                          [labels]="labels14days"
+                          [legend]="legend"
+                          [chartType]="lineChartType">
+                    </canvas>
+                  </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="chartChoice === 1 && sessionDatasets7days.length > 0 && pageviewDatasets7days.length > 0 && eventDatasets7days.length > 0 && hitsVsEventsPerSessionDatasets7days.length > 0">
+        <div class="row">
+            <div class="col col-lg-4 offset-lg-1">
+                <div style="display: block">
+                    <canvas baseChart
+                          [datasets]="pageviewDatasets7days"
+                          [options]="pageviewOptions"
+                          [labels]="labels7days"
+                          [legend]="legend"
+                          [chartType]="lineChartType">
+                    </canvas>
+                  </div>
+            </div>
+            <div class="col col-lg-4 offset-md-2">
+                <div style="display: block">
+                    <canvas baseChart
+                          [datasets]="eventDatasets7days"
+                          [options]="eventOptions"
+                          [labels]="labels7days"
+                          [legend]="legend"
+                          [chartType]="lineChartType">
+                    </canvas>
+                  </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col col-lg-4 offset-lg-1">
+                <div style="display: block">
+                    <canvas baseChart
+                          [datasets]="sessionDatasets7days"
+                          [options]="sessionOptions"
+                          [labels]="labels7days"
+                          [legend]="legend"
+                          [chartType]="lineChartType">
+                    </canvas>
+                  </div>
+            </div>
+            <div class="col col-lg-4 offset-md-2">
+                <div style="display: block">
+                    <canvas baseChart
+                          [datasets]="hitsVsEventsPerSessionDatasets7days"
+                          [options]="hitsVsEventsPerSessionOptions"
+                          [labels]="labels7days"
                           [legend]="legend"
                           [chartType]="lineChartType">
                     </canvas>

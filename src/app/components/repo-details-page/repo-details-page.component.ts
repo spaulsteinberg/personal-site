@@ -175,6 +175,7 @@ lineChartOptions: (ChartOptions & { annotation: any }) = {
         },
         ticks: {
           fontColor: 'white',
+          beginAtZero: true
         }
       }
     ]
