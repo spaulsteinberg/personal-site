@@ -28,4 +28,9 @@ export class GoogleAnalyticsService {
       'event_category': name
     });
   }
+
+  
+  logAnalytics(name:string){
+    this.eventEmitter(name, "select_content", "go_to", "click", 10);
+  }
 }

@@ -1,0 +1,44 @@
+<div class="back">
+    <span class="prev-icon-container" style="margin-left:5%; margin-bottom: 5%;" (click)="navToCharts();">
+        <img src="../../../assets/analytics-images/arrow_back-24px.svg" alt="back.svg">
+      </span>
+</div>
+
+<p *ngIf="isError; else chartBlock">{{errorMessage}}</p>
+<ng-template #chartBlock>
+    <div class="row">
+        <div class="col col-md-6">
+            <div class="loading-bar" *ngIf="isLoading">
+                <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+            </div>
+            <div style="display: block" *ngIf="pathChartData.length > 0 && pathChartLabels.length > 0">
+                <h1 style="margin-left: 35%; color:lightblue;">View Distribution</h1>
+                <canvas baseChart
+                            [data]="pathChartData"
+                            [labels]="pathChartLabels"
+                            [chartType]="doughnutChartType"
+                            [colors]="doughnutChartColors"
+                            [options]="doughnutChartOptions">
+                </canvas>
+            </div>
+        </div>
+        <div class="col col-md-6">
+            <div class="loading-bar" *ngIf="eventsLoading">
+                <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+            </div>
+            <div *ngIf="isErrorEvent; else chart">{{isErrorEventMessage}}</div>
+            <ng-template #chart>
+                <div style="display: block" *ngIf="eventChartLabels.length > 0 && eventChartData.length > 0">
+                    <h1 style="margin-left: 35%; color:lightblue;">Event Distribution</h1>
+                    <canvas baseChart
+                                [data]="eventChartData"
+                                [labels]="eventChartLabels"
+                                [chartType]="doughnutChartType"
+                                [colors]="doughnutChartColors"
+                                [options]="doughnutChartOptions">
+                    </canvas>
+                </div>
+            </ng-template>
+        </div>
+    </div>
+</ng-template>

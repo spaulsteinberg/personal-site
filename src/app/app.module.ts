@@ -34,6 +34,7 @@ import { SiteAnalyticsComponent } from './components/site-analytics/site-analyti
 import { SiteNetworkSpeedComponent } from './components/site-network-speed/site-network-speed.component';
 import { MasterSiteAnalyticsComponent } from './components/master-site-analytics/master-site-analytics.component';
 import { AnalyticsChartsComponent } from './components/analytics-charts/analytics-charts.component';
+import { PopularPagesComponent } from './components/popular-pages/popular-pages.component';
 
 
 
@@ -59,7 +60,8 @@ import { AnalyticsChartsComponent } from './components/analytics-charts/analytic
     SiteAnalyticsComponent,
     SiteNetworkSpeedComponent,
     MasterSiteAnalyticsComponent,
-    AnalyticsChartsComponent
+    AnalyticsChartsComponent,
+    PopularPagesComponent
   ],
   imports: [
     BrowserModule,

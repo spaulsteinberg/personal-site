@@ -2,9 +2,12 @@
     <span class="prev-icon-container" style="margin-left:5%;" (click)="navToSiteSpeed();">
       <img src="../../../assets/analytics-images/arrow_back-24px.svg" alt="back.svg">
     </span>
-    <span class="chart-7days" (click)="switchTo7Days()" style="margin-left: 32%; color:red;">7 Days</span>
+    <span class="chart-7days" (click)="switchTo7Days()" style="margin-left: 29%; color:red;">7 Days</span>
     <span class="chart-14days" (click)="switchTo14Days()" style="margin-left: 5%">14 Days</span>
     <span class="chart-30days" (click)="switchTo30Days()" style="margin-left: 5%;">30 Days</span>
+    <span class="prev-icon-container" style="padding-left: 31%;" (click)="this._logAnalytics.logAnalytics('Chart Analytics'); navToMostPopular();">
+        <img src="../../../assets/analytics-images/arrow_forward-24px.svg" alt="back.svg">
+    </span>
 </div>
 <div class="loading-bar" *ngIf="isLoading">
     <mat-progress-bar mode="indeterminate"></mat-progress-bar>

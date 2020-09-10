@@ -23,7 +23,7 @@ export class EmailRegisterComponent implements OnInit {
     lastName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(30), invalidNameValidator]],
     email: ['', [Validators.required, Validators.maxLength(320), validateEmailAddress]],
     phone: ['', [Validators.required, phoneValidator]],
-    description: ['', [Validators.maxLength(100)]]
+    description: ['', [Validators.required, Validators.maxLength(100)]]
   });
 
   //call with firstName...getters no () required

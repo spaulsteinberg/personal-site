@@ -16,7 +16,7 @@ import * as $ from 'jquery/dist/jquery.min.js';
 })
 export class AnalyticsChartsComponent implements OnInit {
 
-  constructor(private analytics: AnalyticsService, private router: Router, private route: ActivatedRoute) { }
+  constructor(private analytics: AnalyticsService, private router: Router, private route: ActivatedRoute, public _logAnalytics: GoogleAnalyticsService) { }
 
   isError:boolean;
   errMessage;
@@ -119,6 +119,10 @@ export class AnalyticsChartsComponent implements OnInit {
   navToSiteSpeed(){
     this.router.navigate(['../speedandnetwork'], {relativeTo: this.route});
   }
+  navToMostPopular(){
+    console.log(this.router.url);
+    this.router.navigate(['../popular'], {relativeTo: this.route});
+  }
 
   //switch on span click to toggle to X days of data
   switchTo7Days(){
@@ -189,7 +193,6 @@ export class AnalyticsChartsComponent implements OnInit {
       { data: this.analyticData7days.avgEventsPerSession, label: "Events/Session", backgroundColor: 'transparent', borderColor: 'whitesmoke', hoverBackgroundColor: 'yellow'}
     ];
   }
-
 
   legend = true;
   lineChartType = 'line';
