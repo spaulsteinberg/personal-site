@@ -40,12 +40,14 @@ export class UserStatsComponent implements OnInit {
   languageUsageStats = new Map();
   ngOnInit(): void {
     //hydrate the map on complete
+    //use mergeMap to use the data from the first subscription in the 2nd
+    //use pipe when you want to have multiple operators like merging and error catching
     this._repo.getGitHubRepos()
-    .pipe( //use pipe when you want to have multiple operators like merging and error catching
+    .pipe(
       tap(data => this.getPageViewsForEachRepo(data)),
       tap(data => this.getCommitsYearly(data)),
       tap(data => this.getTopReferrers(data)),
-      mergeMap(data => this.createLanguageMap(data)), //use mergeMap to use the data from the first subscription in the 2nd
+      mergeMap(data => this.createLanguageMap(data)),
       catchError(error => of(`Caught error: ${error}`))
     ).subscribe({
       complete: () => this.hydrateMaps()

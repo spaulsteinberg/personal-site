@@ -6,4 +6,6 @@ export interface IPage {
     loadTime;
     redirectTime;
     serverResponseTime;
+    lat;
+    long;
 }

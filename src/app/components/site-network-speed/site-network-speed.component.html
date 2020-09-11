@@ -23,7 +23,7 @@
               </ng-container>
               <ng-container matColumnDef="city">
                 <th class="header header-action" mat-header-cell *matHeaderCellDef mat-sort-header="city"> City </th>
-                <td mat-cell *matCellDef="let element"> {{element.city}} </td>
+                <td mat-cell *matCellDef="let element"> <span class="to-map" style="color: lightskyblue" (click)="openMap(element.lat, element.long)">{{element.city}}</span></td>
               </ng-container>
               <ng-container matColumnDef="region">
                 <th class="header header-event" mat-header-cell *matHeaderCellDef mat-sort-header="region"> Region </th>

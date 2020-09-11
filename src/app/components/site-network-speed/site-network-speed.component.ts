@@ -35,12 +35,13 @@ export class SiteNetworkSpeedComponent implements OnInit {
               country: element[1],
               city: element[2],
               region: element[3],
-              loadTime: element[4],
-              redirectTime: element[5],
-              serverResponseTime: element[6]
+              lat: element[4], 
+              long: element[5],
+              loadTime: element[6],
+              redirectTime: element[7],
+              serverResponseTime: element[8]
             });
           });
-          console.log("PAGES:", this.pages)
           this.dataSource = new MatTableDataSource<IPage>(this.pages);
           this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;
@@ -61,6 +62,10 @@ export class SiteNetworkSpeedComponent implements OnInit {
 
   navToCharts(){
     this.router.navigate(['../analyticscharts'], {relativeTo: this.route});
+  }
+  // open the map passing the longitude and latitude as URL params
+  openMap(lat:number, long:number){
+    this.router.navigate(['../speedandnetwork/map/', lat, long], {relativeTo: this.route});
   }
 
 }

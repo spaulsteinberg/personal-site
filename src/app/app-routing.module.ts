@@ -16,6 +16,7 @@ import { SiteNetworkSpeedComponent } from './components/site-network-speed/site-
 import { MasterSiteAnalyticsComponent } from './components/master-site-analytics/master-site-analytics.component';
 import { AnalyticsChartsComponent } from './components/analytics-charts/analytics-charts.component';
 import { PopularPagesComponent } from './components/popular-pages/popular-pages.component';
+import { MapAgmComponent } from './components/map-agm/map-agm.component';
 
 
 const routes: Routes = [
@@ -33,7 +34,8 @@ const routes: Routes = [
       { path: 'site', component: SiteAnalyticsComponent },
       { path: 'speedandnetwork', component: SiteNetworkSpeedComponent },
       { path: 'analyticscharts', component: AnalyticsChartsComponent },
-      { path: 'popular', component: PopularPagesComponent }
+      { path: 'popular', component: PopularPagesComponent },
+      { path: 'speedandnetwork/map/:lat/:long', component: MapAgmComponent}
     ]
   },
   { path: 'analytics/speedandnetwork', component: SiteNetworkSpeedComponent},

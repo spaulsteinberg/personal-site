@@ -35,8 +35,9 @@ import { SiteNetworkSpeedComponent } from './components/site-network-speed/site-
 import { MasterSiteAnalyticsComponent } from './components/master-site-analytics/master-site-analytics.component';
 import { AnalyticsChartsComponent } from './components/analytics-charts/analytics-charts.component';
 import { PopularPagesComponent } from './components/popular-pages/popular-pages.component';
-
-
+import { MapAgmComponent } from './components/map-agm/map-agm.component';
+import { GoogleMapsModule } from '@angular/google-maps';
+import { MAPS_API } from './Constants/Maps';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import { PopularPagesComponent } from './components/popular-pages/popular-pages.
     SiteNetworkSpeedComponent,
     MasterSiteAnalyticsComponent,
     AnalyticsChartsComponent,
-    PopularPagesComponent
+    PopularPagesComponent,
+    MapAgmComponent
   ],
   imports: [
     BrowserModule,
@@ -77,7 +79,8 @@ import { PopularPagesComponent } from './components/popular-pages/popular-pages.
     MatSortModule,
     FormsModule,
     ReactiveFormsModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    GoogleMapsModule
   ],
   providers: [FormBuilder],
   bootstrap: [AppComponent]

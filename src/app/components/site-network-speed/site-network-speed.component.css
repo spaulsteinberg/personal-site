@@ -31,3 +31,6 @@ div {
     color: turquoise;
     width: 15% !important; /* this keep headers from moving */
 }
+.to-map:hover {
+    cursor: pointer;
+}
