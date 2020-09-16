@@ -35,7 +35,7 @@ const routes: Routes = [
       { path: 'speedandnetwork', component: SiteNetworkSpeedComponent },
       { path: 'analyticscharts', component: AnalyticsChartsComponent },
       { path: 'popular', component: PopularPagesComponent },
-      { path: 'speedandnetwork/map/:lat/:long', component: MapAgmComponent}
+      { path: 'speedandnetwork/map/:city/:lat/:long', component: MapAgmComponent}
     ]
   },
   { path: 'analytics/speedandnetwork', component: SiteNetworkSpeedComponent},

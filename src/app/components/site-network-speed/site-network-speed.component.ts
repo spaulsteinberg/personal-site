@@ -64,8 +64,8 @@ export class SiteNetworkSpeedComponent implements OnInit {
     this.router.navigate(['../analyticscharts'], {relativeTo: this.route});
   }
   // open the map passing the longitude and latitude as URL params
-  openMap(lat:number, long:number){
-    this.router.navigate(['../speedandnetwork/map/', lat, long], {relativeTo: this.route});
+  openMap(lat:number, long:number, city:string){
+    this.router.navigate(['../speedandnetwork/map/', city, lat, long], {relativeTo: this.route});
   }
 
 }

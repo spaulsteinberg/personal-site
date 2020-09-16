@@ -5,6 +5,7 @@ import { catchError } from 'rxjs/operators';
 import { ThrowStmt } from '@angular/compiler';
 import { IEvent } from 'src/app/models/IEventData';
 import { IViews } from 'src/app/models/IViews';
+import { MAPS_API } from '../../Constants/Maps';
 
 @Injectable({
   providedIn: 'root'
@@ -54,6 +55,11 @@ export class AnalyticsService {
     return this.http.get<any>(url).pipe(catchError(this.getPageViewError));
   }
 
+  getMap(layer:string, z:any, x:any, y:any){
+    const url = `${MAPS_API.WEATHER_BASE}${layer}/${z}/${x}/${y}.png?appid=${MAPS_API.WEATHER_APPID}`;
+    return this.http.get<any>(url).pipe(catchError(this.caughtWeatherError));
+  }
+
   getPageViewError(error: HttpErrorResponse){
     return throwError(error.message || "An error occurred getting analytics data. Please try again.");
   }
@@ -68,5 +74,9 @@ export class AnalyticsService {
 
   getTimeMetricsError(error: HttpErrorResponse){
     return throwError(error.message || "An error occurred fetching time metrics. Please try again.");
+  }
+
+  caughtWeatherError(error: HttpErrorResponse){
+    return throwError(error.message || "Something went wrong fetching weather map.");
   }
 }
